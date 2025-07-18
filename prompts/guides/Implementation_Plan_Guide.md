@@ -66,12 +66,21 @@ Use retained workflow relationships to determine task sequencing:
 
 See section §3.5 for dependency declaration formatting requirements.
 
-### 2.4. Agent Assignment Logic
+### 2.4. Task Execution Scope
+When writing tasks, assume Implementation Agents have access to the same IDE environment and tools as the Setup Agent. For actions requiring work outside the IDE interface, tasks should specify Implementation Agent guidance rather than direct execution:
+
+- **IDE environment capabilities** → Tasks can specify direct Implementation Agent execution
+- **External platform actions** → Tasks should specify Implementation Agent guidance of user actions  
+- **User preference signals retained** → Honor explicit requests for guidance over automation, regardless of technical capability
+- **Mixed execution tasks** → Break into separate steps: agent-executable preparation + user-guided external actions
+
+### 2.5. Agent Assignment Logic
 Use retained domain boundaries to determine agent distribution:
 
 #### Domain Separation Guidelines
 - **Different skill areas retained** → Separate agents (research vs writing vs analysis vs technical)
 - **Different technical stacks/tools noted** → Domain-specific agents for each environment
+- **Context preservation**: Group related tasks within each agent's domain
 - **Concurrent work streams identified** → Enable parallel execution with multiple agents
 
 #### Assignment Patterns
@@ -88,8 +97,7 @@ See section §3.5 for dependency optimization principles.
 
 #### Special Considerations
 - **Investigation needs retained** → Plan for Ad-Hoc agent delegation in complex tasks
-- **Simple scope understanding** → Single agent may suffice for focused projects  
-- **Hybrid requirements** → Combine domain and workflow-stage agents when appropriate
+- **Hybrid requirements** → Combine domain and workflow-stage agents **only** when appropriate
 
 Align agent assignments with retained domain patterns rather than arbitrary task distribution.
 
@@ -116,6 +124,7 @@ Keep this header < 15 lines so diff tools can catch version bumps cheaply.
 - Use a level 3 heading (`###`) for each task, assigned to one agent:  
     `### Task <n.m> – <Title> │ <Agent_<Domain>>`
 - Each task is a focused, actionable step for an Implementation Agent with one clear objective
+- Apply execution scope principles from section §2.4 when determining task language and approach
 - Directly under the heading, add an unordered list with these meta-fields:
     - **Objective:** One-sentence task goal.
     - **Output:** Concrete deliverable (e.g., function, module, PR).
