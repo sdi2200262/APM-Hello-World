@@ -45,12 +45,14 @@ After Context Synthesis is complete, continue to the Implementation Plan & Memor
 
 ## 3 Implementation Plan & Memory Root Creation Phase
 
-1. Read `guides/Implementation_Plan_Guide.md` (if indexed) or request from User if not available.
+1. Read `guides/Implementation_Plan_Creation_Guide.md` (if indexed) or request from User if not available.
 2. Create the `Implementation_Plan.md` or `.json` at the correct path, following the guide and User instructions.
-3. Present the plan to the User for review and feedback.  
+3. Read `guides/Implementation_Plan_Review_Guide.md` (if indexed) or request from User if not available.
+4. Apply systematic validation to the created plan based on the guide and update based on review findings.
+5. Present the reviewed, updated plan to the User with validation insights and targeted refinement questions. Pause and await for confirmation to proceed, or a modification request.  
   - Keep updating the plan as needed, until the User explicitly approves.
 
-4. Once the Implementation Plan is approved, proceed to Memory Root Creation:
+6. Once the Implementation Plan is approved, proceed to Memory Root Creation:
   - Read `guides/Memory_System_Guide.md` (if indexed) or request from User if not available.
   - Following the guide, select a Memory System format: `simple`, `dynamic-md`, or `dynamic-json`, based on project complexity and User input.
   - Create the Memory Root:
