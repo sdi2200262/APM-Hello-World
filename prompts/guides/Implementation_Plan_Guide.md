@@ -21,7 +21,7 @@ Below follows a summary of the two Implementation Plan variants, their formats a
 
 The Implementation Plan serves as the *single source of truth* for project scope, task organization, and agent assignments. Created by Setup Agent after context synthesis, maintained by Manager Agent throughout the session.
 
-----
+---
 
 ## 2. Project Decomposition Principles
 Transform Context Synthesis outputs into structured Implementation Plans:
@@ -50,7 +50,11 @@ Apply retained insights from Context Synthesis to determine task boundaries:
 - **Retained investigation needs** → Include dedicated research tasks preceding implementation tasks or assign Research Ad-Hoc Agent
 
 #### Breakdown Principles
-- Each task should have **one clear, achievable objective**
+**Objective Decomposition:** A phase will include some **achievable objectives** which can be broken down further into **units of work**
+**Unit of Work Decomposition**: Transform objectives into focused completion units that deliver independent value
+- **Parallel Activity Detection**: Split activities that can be done in any order into separate tasks
+- **Objective Analysis**: If objective contains multiple distinct activities, separate into individual tasks
+- **Natural Workflow**: Let task complexity follow actual requirements, avoid forcing artificial consistency
 - **Challenging areas flagged in context** → Create focused, well-scoped tasks
 - **Sequential workflows retained** → Honor natural progression order
 - **Independent work noted** → Allow parallel execution across agents
@@ -73,6 +77,20 @@ When writing tasks, assume Implementation Agents have access to the same IDE env
 - **External platform actions** → Tasks should specify Implementation Agent guidance of user actions  
 - **User preference signals retained** → Honor explicit requests for guidance over automation, regardless of technical capability
 - **Mixed execution tasks** → Break into separate steps: agent-executable preparation + user-guided external actions
+
+#### External Platform Action Identification
+**Decision Criteria**: Ask these questions internally to identify external platform actions
+- **Access boundaries**: Does this require accessing interfaces outside the IDE environment?
+- **User account control**: Does this require user authentication or account permissions that agents cannot access?
+- **Platform-specific UI**: Does this involve navigating web interfaces, dashboards, or settings panels?
+- **User preference signals**: Has the user explicitly indicated they will handle certain configurations manually?
+
+#### Guidance Task Approach  
+**Guidance Task Principles**:
+- **Preparation over execution**: Focus on creating resources and instructions rather than attempting direct action
+- **User empowerment**: Provide information and guidance that enables user success
+- **Clear boundaries**: Distinguish between agent-preparable work and user-required actions
+- **Language patterns**: Use "guide," "provide instructions," "prepare documentation" rather than "configure," "deploy," "setup"
 
 ### 2.5. Agent Assignment Logic
 Use retained domain boundaries to determine agent distribution:
@@ -109,7 +127,7 @@ Align agent assignments with retained domain patterns rather than arbitrary task
 ```markdown
 # <Project Name> – Implementation Plan 
 
-**Memory Strategy:** simple | dynamic-md | dynamic-json  
+**Memory Strategy:**  [Leave empty - determined during Memory Root Creation phase]
 **Last Modification:** [Summary of last modification by Manager Agent here]
 **Project Overview:** [High-level project overview here]
 ```
@@ -123,7 +141,7 @@ Keep this header < 15 lines so diff tools can catch version bumps cheaply.
 ### 3.3. Task Blocks
 - Use a level 3 heading (`###`) for each task, assigned to one agent:  
     `### Task <n.m> – <Title> │ <Agent_<Domain>>`
-- Each task is a focused, actionable step for an Implementation Agent with one clear objective
+Each task is a focused, actionable unit of work for an Implementation Agent with one clear objective that delivers independent value.
 - Apply execution scope principles from section §2.4 when determining task language and approach
 - Directly under the heading, add an unordered list with these meta-fields:
     - **Objective:** One-sentence task goal.
@@ -134,17 +152,22 @@ Keep this header < 15 lines so diff tools can catch version bumps cheaply.
 Sub-tasks break down a parent task into logical steps and must be included for every task. Choose format based on work characteristics rather than arbitrary rules.
 
 #### Format Selection Logic
-Determine subtask format based on task workflow requirements:
+Determine subtask format based on internal dependencies and confirmation needs:
 
-**Single-step [unordered list(`-`)]:** Work completed in one focused exchange (one response)
-- No internal sequential dependencies between steps
-- Can be approached directly and completed without staged progression
-- All subtask components can be addressed simultaneously
+**Single-step [unordered list(`-`)]:** Work with no internal sequential dependencies completed in one focused exchange (one response)
+- All subtask activities can be approached simultaneously within one exchange
+- No natural "first this, then that" progression required
+- Implementation Agent can complete entire unit of work without staged confirmation
 
-**Multi-step [ordered list (`1.`, `2.`, ...)]:** Work requiring sequential progression (multiple responses)
-- Has natural "first this, then that" internal workflow
+**Multi-step [ordered list (`1.`, `2.`, ...)]:**Work with sequential internal dependencies completed in multiple progressive exchanges (multiple responses)
+- Clear "first this, then that" workflow where steps build on each other
 - Benefits from user confirmation between progression steps
-- Same focused task scope but needs staged execution for success
+- Natural pause points where Implementation Agent should verify before continuing
+
+#### Natural Step Count Guidance
+- **Workflow-driven steps**: Let natural workflow determine step count (2-3 steps to 5-6 steps based on actual requirements)
+- **Avoid artificial consistency**: Each task should follow its organic structure, not predetermined patterns
+- **Template matching prevention**: Do not standardize step counts across tasks
 
 #### Ad-Hoc Agent Delegation Steps
 Implementation Agents reference `ad-hoc/` directory guides for delegation execution.
@@ -152,6 +175,8 @@ For multi-step tasks requiring specialized knowledge or investigation, include d
 - **Research delegation**: When current documentation, SDKs, or APIs may be outdated/unknown
 - **Debug delegation**: When complex bugs are anticipated that may require dedicated debugging or the task revolve about bug solving
 - **Format**: "Assign [research/debugging] of [specific topic] to an Ad-Hoc agent to [expected outcome]."
+
+**Note: Examples below illustrate structure and format - step counts should match actual workflow requirements, not these specific patterns.**
 
 **Example (single-step format):**
 ```markdown
