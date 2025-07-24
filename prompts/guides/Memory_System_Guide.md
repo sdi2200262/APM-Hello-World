@@ -6,8 +6,6 @@ This guide explains how APM sessions store and evolve memory. It defines three M
 
 Memory duties are split between the *Setup Agent* and the *Manager Agent*. Details on individual Memory Log files reside in `guides/Memory_Log_Guide.md`.
 
----
-
 ## 1  Memory System Variant Overview
 Summary of the three Memory System variants, their storage layouts, log formats and memory summarization strategies:
 
@@ -27,8 +25,6 @@ Summary of the three Memory System variants, their storage layouts, log formats 
     - After each phase completes, an inline subsection is appended to the `Memory_Root.md` file summarizing the phase.
 
 **Memory Logs** capture granular, task‑level context and are written by Implementation Agents after each task completion. See `guides/Memory_Log_Guide.md` for schemas and writing rules.
-
----
 
 ## 2  Setup Agent Responsibilities
 Main responsibilities of the Setup Agent when initializing the Memory System for an APM session:
@@ -80,9 +76,6 @@ For the memory system variant you decided, do the following:
       Implementation Plan Phase Summarizes are to be stored here; detailed Task Memory Logs are stored in Markdown or JSON format in the sub-directories.
       ```
     - Subfolders (e.g., `Phase_01_<slug>/`) are created by the Manager Agent as needed.
-
-
----
 
 ## 3  Manager Agent Responsibilities
 Main responsibilities of the Manager Agent when maintaining the Memory System during an APM session:
