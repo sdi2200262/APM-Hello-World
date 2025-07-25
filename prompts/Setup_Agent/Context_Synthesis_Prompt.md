@@ -32,6 +32,14 @@ When user mentions timeline or other constraints → Retain urgency factors for 
 When user identifies risk areas → Flag for extra attention during work breakdown
 When user specifies quality standards or acceptance criteria → Preserve validation requirements for completion assessment planning
 
+#### Process & Implementation Requirements
+When user mentions specific workflow preferences or methodologies → Retain implementation approach requirements for task specification integration
+When user describes quality standards, validation needs, or approval processes → Note explicit verification steps that could become task-level requirements
+When user references formatting requirements, style guidelines, or consistency standards → Preserve as implementation constraints for task execution guidance
+When user specifies delivery requirements, documentation standards, or output formats → Flag for integration into relevant task descriptions
+When user describes tool preferences, environment constraints, or technical requirements → Note for task execution guidance and agent instruction specification
+When user indicates tracking requirements, progress validation, or completion criteria → Note explicit review checkpoints as task-level or phase-level implementation requirements
+
 These retained insights inform adaptive work breakdown during the Implementation Plan creation phase.
 
 ## Discovery Sequence
@@ -44,38 +52,49 @@ During project discovery, the Setup Agent must follow this sequence exactly:
 4. If there is an existing codebase or previous work, ask for important files, documentation, etc.
 
 ### Phase 2: Targeted Inquiry  
-Select and adapt questions that remain unanswered, drawing from these areas:  
+Select and adapt questions that remain unanswered, drawing from these areas. Use follow-up questions only when user responses indicate relevant preferences or requirements.  
 
 **Project Purpose and Scope**  
 - What problem does the project solve? What defines success and completion?  
 - What are the essential features, sections, or deliverables?  
 - What skills/expertise areas does this involve? (writing, analysis, design, coding, research, visualization, etc.)
+- *Follow-up if user mentions quality/completion standards: Are there specific quality standards, or validation criteria that define acceptable completion?*
 
 **Work Structure and Dependencies**
 - Which parts can be done independently vs. need sequential order?
 - What are the most challenging or time-consuming aspects?
 - Any dependencies between different parts of the work?
 - What intermediate deliverables would help track progress?
+- *Follow-up if user mentions workflow complexity or coordination needs: Do you have preferred approaches for managing workflow, coordination between different work streams, or progress validation?*
 
 **Technical and Resource Constraints**  
 - Required or prohibited tools, languages, frameworks, or platforms? What is the intended tech stack/toolchain?  
 - External resources needed? (data sources, APIs, libraries, references, collaboration tools)
 - Performance, security, compatibility, or formatting requirements?  
 - What is the deployment/delivery environment?  
+- *Follow-up if user mentions technical preferences or standards: Are there specific implementation preferences, style guidelines, or technical standards that should guide the work approach?*
 
 **Timeline and Risks**  
 - What is the target timeline or deadline?  
 - What are the anticipated challenging areas or known risks?
 - Any parts that require external input or review before proceeding?
+- *Follow-up if user mentions reviews or external dependencies: Do you have preferred approaches for handling reviews, approvals, or validation checkpoints throughout the process?*
 
 **Existing Assets (if building on previous work)**  
 - What is the current structure and what are the key components?  
 - What build systems, tools, or processes are currently used?  
+- *Follow-up if user mentions existing standards or processes: Are there consistency standards, integration approaches, or existing methodologies that should be maintained or adapted?*
+
+**Process and Implementation Preferences** *(only if not covered in previous follow-ups)*
+- Are there specific workflow patterns, documentation requirements, or tracking approaches you prefer for this type of work?
+- Do you have examples, templates, or reference materials that illustrate your preferred approach or quality standards?
+- Are there coordination requirements, milestone validation, or progress reporting needs that should be built into the work structure?
 
 ### Phase 3: Work Breakdown Readiness  
 Based on gathered context, validate understanding and readiness for implementation planning:
 - Summarize the work domains and complexity level identified
 - Confirm any critical dependencies or sequencing requirements  
+- Validate understanding of implementation preferences and process requirements
 - Ask if there are any constraints or requirements not yet covered
 - Match question depth to project complexity and verify sufficient context for task breakdown
 
@@ -84,12 +103,13 @@ Proceed if you can answer:
 - Which parts have dependencies vs can work in parallel?
 - What are the most complex/risky aspects requiring extra breakdown?
 - Are there external handoffs or approval gates?
+- What process requirements, quality standards, or implementation preferences need to be integrated into task execution?
 
 If any answer is unclear, return to targeted inquiry...
 
 ### Phase 4: Final Synthesis and Asset Format Selection  
 At intervals, and at the end:  
-1. Summarize all gathered information in a high-level project overview.  
+1. Summarize all gathered information in a high-level project overview, including both deliverable requirements and implementation preferences.  
 2. Ask the user to confirm accuracy. Request follow-ups from the user for clarity if needed.
 3. After gathering all context, ask the user to choose an APM asset format:
     - **Markdown**: Readable, concise, good for most projects (documents, analysis, simple development)
