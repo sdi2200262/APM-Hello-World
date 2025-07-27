@@ -144,6 +144,9 @@ Present the full phase sequence with supporting rationale:
 #### Second Chat Action
 After presenting agent team assignments (see §2.2), immediately write **in chat** phase sequence analysis before beginning phase cycles (see §4). This establishes project structure foundation for systematic task breakdown.
 
+### 3.3. Implementation Plan File Initialization
+Create **completely empty** `Implementation_Plan.md` file in working directory to receive phase content during upcoming phase cycles. Afterwards proceed to phase cycles (see §4). 
+
 ## 4. Phase Cycle Execution (Core Repetitive Process)
 Sections 4.1-4.4 are chat operations for conceptual planning. Section 4.5 is file operation for documentation.
 
@@ -212,9 +215,10 @@ For each multi-step task you identified and presented in §4.2:
 
 #### Step Definition Process
 - Base step count on actual workflow dependencies and process requirements for unit of work completion, not predetermined patterns
+- **Naturally vary step count from 2-6 steps** based on genuine workflow complexity and process requirements
 - Each step builds upon previous step with clear advancement and incorporates relevant quality standards
 - Use numbered list format with clear description of step content including implementation specifications
-- Vary step count authentically based on task complexity and process requirements to avoid template matching
+- **Avoid rigid step count patterns** - let workflow dependencies determine natural progression
 
 #### Multi-step Task Presentation  
 Present **in chat** all multi-step tasks with numbered list step breakdown including process integration
@@ -234,27 +238,24 @@ Identify task dependencies within current phase using retained workflow relation
 Present **in chat** complete dependency list using simple notation: "Task X.Y depends on Task Z.W output"
 
 ### 4.5. Phase Documentation Procedure
-Document completed phase cycle in file format to provide context break and preserve structured progress:
+**CRITICAL WORKFLOW SEQUENCE**: Complete ALL chat presentations from §4.1-4.4 before any file operations.
 
 #### File Creation Process
-- **First phase cycle**: Create `Implementation_Plan.md` at workspace root with current phase content only
-- **Subsequent phase cycles**: Append current phase content to existing file under previous phases
-- **Single write operation**: Each phase cycle results in exactly one file write containing only current phase
+1. **Complete Phase Breakdown in Chat First**: Present all task identifications, classifications, step definitions, and dependencies **in chat** before proceeding to file documentation
+2. **File Operation Timing**: Append to `Implementation_Plan.md` only after complete phase breakdown is presented and confirmed in chat
+3. **Single write operation**: Each phase cycle results in **exactly one** file append containing only current phase content
 
 #### Content Translation Format
-Translate chat presentations from §4.1-4.4 into structured file format, ensuring process requirements and implementation specifications are preserved in task descriptions. Below follows an example with both task types and a task dependency:
+Translate completed chat presentations from §4.1-4.4 into structured file format, ensuring process requirements and implementation specifications are preserved in task descriptions:
 
-```markdown
-Phase <n>: <Phase_Name> - <All_Agents_Assigned>
-
-Task <n.1>: <Task_Name> - Agent_<Domain>
-1) step 1 details
-2) step 2 details
-...
-
-Task <n.2>: <Task_Name> - Agent_<Domain> - Depends on Task <n.1> output
-- description of single-step task content
-```
+**File Structure Requirements:**
+- Phase header with name and all assigned agents: `Phase <n>: <Phase_Name> - <All_Agents_Assigned>`
+- Task entries with agent assignments (and dependency notations if any): `Task <n.1>: <Task_Name> - Agent_<Domain>`
+- Multi-step tasks use numbered list format (1, 2, 3...)
+- Single-step tasks use bullet point format (-)
+- Dependency notation format: `Task <n.2>: <Task_Name> - Agent_<Domain> - Depends on Task <n.1> output`
+- Preserve all process requirements and implementation specifications from chat breakdown
+- Preserve step descriptions and implementation integration exactly as presented in chat
 
 ## 5. Final Review & Cross-Agent Integration
 

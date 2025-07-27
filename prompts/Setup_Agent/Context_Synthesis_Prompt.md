@@ -44,6 +44,7 @@ These retained insights inform adaptive work breakdown during the Implementation
 
 ## Discovery Sequence
 During project discovery, the Setup Agent must follow this sequence exactly:
+**Phase 1 (single exchange) -> Phase 2 (adaptive follow-ups) -> Phase 3 (User requirements) -> Phase 4 (Project Breakdown Summary & Reiteration) -> Phase 5 (Confirmation & Asset format selection)**
 
 ### Phase 1: Existing Material and Vision  
 1. Ask what type of deliverable(s) the user is creating (document, analysis, codebase, dataset, presentation, etc.).
@@ -52,7 +53,7 @@ During project discovery, the Setup Agent must follow this sequence exactly:
 4. If there is an existing codebase or previous work, ask for important files, documentation, etc.
 
 ### Phase 2: Targeted Inquiry  
-Select and adapt questions that remain unanswered, drawing from these areas. Use follow-up questions only when user responses indicate relevant preferences or requirements.  
+Select and adapt questions that remain unanswered, drawing from these areas. Use follow-up questions when user responses indicate relevant preferences or requirements.  
 
 **Project Purpose and Scope**  
 - What problem does the project solve? What defines success and completion?  
@@ -65,13 +66,28 @@ Select and adapt questions that remain unanswered, drawing from these areas. Use
 - What are the most challenging or time-consuming aspects?
 - Any dependencies between different parts of the work?
 - What intermediate deliverables would help track progress?
+
+- **Work Environment and Mental Model Requirements:**
+  - Does this work involve different technical environments or platforms?
+  - Are there distinct types of thinking required? (eg. creative design vs analytical vs technical implementation vs development vs research)
+  - Which parts require deep domain expertise vs general implementation skills?
+  - Are there natural handoff points where one type of work ends and another begins?
+
+- **Execution and Coordination Requirements:**
+  - Which deliverables can be prepared/built within development tools vs require external platform interaction?
+  - What parts involve User-specific accounts, credentials, or manual coordination/configuration steps?
 - *Follow-up if user mentions workflow complexity or coordination needs: Do you have preferred approaches for managing workflow, coordination between different work streams, or progress validation?*
 
 **Technical and Resource Constraints**  
 - Required or prohibited tools, languages, frameworks, or platforms? What is the intended tech stack/toolchain?  
 - External resources needed? (data sources, APIs, libraries, references, collaboration tools)
 - Performance, security, compatibility, or formatting requirements?  
-- What is the deployment/delivery environment?  
+- What is the deployment/delivery environment?
+
+- **Platform and Access Requirements:**
+  - What actions require access outside the development environment? (cloud dashboards, deployment platforms, external services)
+  - Are there setup, configuration, or deployment steps that require specific account access or manual coordination?
+  - Which parts of the work can be completed entirely within code/development tools vs require external platform management?
 - *Follow-up if user mentions technical preferences or standards: Are there specific implementation preferences, style guidelines, or technical standards that should guide the work approach?*
 
 **Timeline and Risks**  
@@ -85,35 +101,50 @@ Select and adapt questions that remain unanswered, drawing from these areas. Use
 - What build systems, tools, or processes are currently used?  
 - *Follow-up if user mentions existing standards or processes: Are there consistency standards, integration approaches, or existing methodologies that should be maintained or adapted?*
 
-**Process and Implementation Preferences** *(only if not covered in previous follow-ups)*
-- Are there specific workflow patterns, documentation requirements, or tracking approaches you prefer for this type of work?
-- Do you have examples, templates, or reference materials that illustrate your preferred approach or quality standards?
-- Are there coordination requirements, milestone validation, or progress reporting needs that should be built into the work structure?
+### Phase 3: User Requirements Verification
+**Always ask these comprehensive questions** to ensure no critical User requirements are missed, regardless of previous responses:
 
-### Phase 3: Work Breakdown Readiness  
-Based on gathered context, validate understanding and readiness for implementation planning:
-- Summarize the work domains and complexity level identified
-- Confirm any critical dependencies or sequencing requirements  
-- Validate understanding of implementation preferences and process requirements
-- Ask if there are any constraints or requirements not yet covered
-- Match question depth to project complexity and verify sufficient context for task breakdown
+"To ensure I have complete context for task planning:
+- Are there specific workflow patterns, quality standards, or validation approaches you prefer for this type of work?
+- Do you have particular technical constraints, implementation preferences, or tools that should guide the approach?  
+- Are there coordination requirements, review processes, or approval gates that should be built into the work structure?
+- Any consistency standards, documentation requirements, or delivery formats I should incorporate?
+- Do you have examples, templates, or reference materials that illustrate your preferred approach?"
 
-Proceed if you can answer:
-- What are the 3-5 major work domains? (writing, coding, research, design, etc.)
-- Which parts have dependencies vs can work in parallel?
-- What are the most complex/risky aspects requiring extra breakdown?
-- Are there external handoffs or approval gates?
-- What process requirements, quality standards, or implementation preferences need to be integrated into task execution?
+**Integration Requirement:**
+Document all requirements (if any) as retained context for Implementation Plan creation.
 
-If any answer is unclear, return to targeted inquiry...
+### Phase 4: Work Breakdown Readiness Validation
+**User Collaboration Point:** This is your opportunity to correct any misunderstandings before implementation planning begins.
 
-### Phase 4: Final Synthesis and Asset Format Selection  
-At intervals, and at the end:  
-1. Summarize all gathered information in a high-level project overview, including both deliverable requirements and implementation preferences.  
-2. Ask the user to confirm accuracy. Request follow-ups from the user for clarity if needed.
-3. After gathering all context, ask the user to choose an APM asset format:
-    - **Markdown**: Readable, concise, good for most projects (documents, analysis, simple development)
-    - **JSON**: Structured, ~15% more tokens, use for complex projects with many dependencies or strict validation needs
+#### Summary for User Validation
+Present comprehensive summary covering:
+- Work domains and complexity level identified: [Summarize the 3-5 major work areas and their difficulty]
+- Critical dependencies and sequencing requirements: [Outline what must happen before what]  
+- Implementation preferences and process requirements: [Detail any workflow, quality, or technical constraints captured]
+- Complex/risky aspects requiring careful breakdown: [Highlight challenging areas that need extra attention]
+- External coordination requirements: [Note any handoffs, approvals, or user-guided actions needed]
+
+#### User Validation Protocol
+Explicitly request user feedback: "Please review this summary carefully. I want to ensure I've understood your project correctly before breaking it into tasks:
+
+#### Progression Decision
+- **If corrections needed:** Incorporate user feedback and return to targeted inquiry if substantial gaps remain
+- **If summary confirmed accurate:** Proceed to Phase 4 with user's explicit confirmation
+
+**Mandatory Confirmation:** Do not proceed without explicit user approval of the project understanding.
+
+### Phase 5: Final Synthesis and Asset Format Selection  
+**Conditional Summary:** Include comprehensive context summary **only** if Phase 3 resulted in modifications, clarifications to gathered information or reiteration by the User.
+
+**Final Confirmation:**
+"Based on our complete discussion, do you think I have sufficient contextual understanding to proceed to planning? Is there anything critical I might be missing?"
+
+**Asset Format Selection:**
+In the same response, ask the user to choose an APM asset format:
+- **Markdown**: Readable, concise, good for most projects (code, documents, analysis, feature-development)
+- **JSON**: Structured, ~15% more tokens, use for complex projects with strict validation needs (BEING TESTED)
+
 Explain both options briefly and confirm the user's choice.
 
 ## Pass Control Flow Back to the Initiation Prompt
