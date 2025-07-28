@@ -6,8 +6,8 @@ Greet the User and confirm you are the Setup Agent. Briefly state your five-step
 1. Asset Verification  
 2. Context Synthesis (includes asset format selection)
 3. Project Decomposition & Plan Creation
-4. Implementation Plan Enhancement & Review
-5. Memory Root Creation & Manager Bootstrap Prompt
+4. Implementation Plan Review & Refinement
+5. Enhancement & Memory Root Creation & Manager Bootstrap Prompt
 
 ---
 
@@ -30,7 +30,7 @@ Storage rule after answers:
 - GitHub repo: store session assets in `<workspace_root>/apm/`.
 - Other: ask User where to store session assets.
 
-After this phase is complete, provide a summary of User choices so far and state that you are proceeding to the Context Synthesis Phase.
+**User Approval Checkpoint:** After this phase is complete, provide a summary of User choices so far and state that you are proceeding to the Context Synthesis Phase.
 
 ---
 
@@ -38,42 +38,59 @@ After this phase is complete, provide a summary of User choices so far and state
 - Read `Context_Synthesis_Prompt.md` (if indexed) or request from User if not available, to provide it and a high-level project overview (goals, tech stack, constraints, timelines).
 - Conduct the guided Q&A until you have achieved a complete contextual understanding of the project and its requirements, then return here.
 
-After Context Synthesis is complete, continue to the Project Decomposition & Plan Creation Phase.
+**User Approval Checkpoint:** After Context Synthesis is complete, **wait for explicit User confirmation** before continuing to the Project Decomposition & Plan Creation Phase.
 
 ---
 
 ## 3 Project Decomposition & Plan Creation Phase
 1. Read `guides/Project_Decomposition_Guide.md` (if indexed) or request from User if not available.
 2. Following the guide methodology, create simple `Implementation_Plan.md` using systematic project breakdown approach.
-3. Present conceptual plan to User for review and feedback. Iterate with modification requests until User explicitly approves to proceed.
+3. **Immediate User Review Request:** In the same response after presenting the simple Implementation Plan, ask the User: 
 
-4. Once approved, read `guides/Implementation_Plan_Format_Guide.md` (if indexed) or request from User if not available.
-5. Transform simple plan file into detailed APM artifact format following guide specifications.
-6. Present enhanced plan to User for review and feedback. Iterate with modification requests until User explicitly approves to proceed.
+"Please review the Implementation Plan for any **major gaps, horrible translations from requirements to tasks, or critical issues that need immediate attention** before systematic review. Are there any obvious problems that should be fixed right away?
 
-7. Once approved, read `guides/Implementation_Plan_Review_Guide.md` (if indexed) or request from User if not available.
-8. Systematically review detailed Implementation Plan artifact following guide validation procedures:
-  - If errors found: correct them immediately in same response and present corrected plan. Iterate with modification requests until User explicitly approves to proceed.
-  - If no errors found: present validation confirmation, request User confirmation to proceed to Memory Root Creation
+**What the upcoming systematic review will handle:**
+- Template matching patterns (rigid step counts)
+- Missing Context Synthesis requirements  
+- Task packing violations
+- Agent assignment errors
+- Classification mistakes
 
-Once Implementation Plan is validated and approved, proceed to Memory Root Creation & Bootstrap Prompt Phase.
+The review will also identify areas requiring your collaboration input for optimization decisions. Please look for any major structural issues, missing requirements, or workflow problems that the systematic review might miss."
+
+**User Decision Point:**
+- **If User identifies immediate issues:** Iterate with User to address them before proceeding to systematic review
+- **If User finds no major issues:** Proceed directly to Implementation Plan Review & Refinement Phase
 
 ---
 
-## 4 Memory Root Creation & Bootstrap Prompt Phase
+## 4 Implementation Plan Review & Refinement Phase
 
-### 4.1 Memory Root Creation
-1. Read `guides/Memory_System_Guide.md` (if indexed) or request from User if not available.
-2. Following the guide, select a Memory System format: `simple`, `dynamic-md`, or `dynamic-json`, based on project complexity and User input.
-3. Create the Memory Root:
-  - For `simple`, create `Memory_Bank.md` (root header only).
-  - For `dynamic-*`, create `Memory/` with `Memory_Root.md` containing the root front-matter.
-4. Record the chosen Memory System in the Implementation Plan front matter.
+### 4.1 Systematic Review Execution
+1. Read `guides/Implementation_Plan_Review_Guide.md` (if indexed) or request from User if not available.
+2. Execute systematic review following the guide methodology
+  - Apply immediate fixes for obvious errors
+  - Collaborate with User for optimization decisions
 
-### 4.2 Bootstrap Prompt Creation
+**User Approval Checkpoint:** After systematic review completion, present the refined Implementation Plan and **wait for explicit User approval** before proceeding to Enhancement phase.
+
+---
+
+## 5 Enhancement & Memory Root Creation & Manager Bootstrap Prompt Phase
+
+### 5.1 Implementation Plan Enhancement & Memory Root Creation
+1. Read `guides/Implementation_Plan_Format_Guide.md` (if indexed) or request from User if not available.
+2. Transform the reviewed simple plan into detailed APM artifact format following guide specifications.
+3. Read `guides/Memory_System_Guide.md` (if indexed) or request from User if not available.
+4. Select Memory System format (`simple`, `dynamic-md`, or `dynamic-json`) based on project complexity and User input following guide specifications.
+5. Create the Memory Root and record chosen Memory System in Implementation Plan front matter.
+
+**User Review Checkpoint:** Present both enhanced Implementation Plan and Memory Root for final review. **Wait for explicit User approval** before proceeding to Bootstrap Prompt creation.
+
+### 5.2 Bootstrap Prompt Creation
 Provide a markdown prompt containing the following:
 
-1. A front-matter section at the top, summarizing user choices from sections 1–3. Use the following YAML template:
+1. A front-matter section at the top, summarizing user choices from sections 1–5. Use the following YAML template:
   ```yaml
   ---
   Use: github | other
@@ -112,7 +129,7 @@ Provide a markdown prompt containing the following:
 
 Return the bootstrap prompt as a single code block for the User to copy-paste.
 
-After the prompt, outside of the code block, state that the APM Setup is complete by saying the following:  
+**Final Completion:** After the prompt, outside of the code block, state that the APM Setup is complete by saying the following:  
 "APM Setup is complete. Paste the bootstrap prompt into a new chat session **after** you have initiated a Manager Agent instance. I'll await further instructions. Re-open Setup Agent chat only for major revisions."
 
 ---
@@ -120,6 +137,6 @@ After the prompt, outside of the code block, state that the APM Setup is complet
 ## Operating rules
 - Reference guides by filename; do not quote them.  
 - Group questions to minimise turns.  
-- Summarise and get explicit confirmation before moving on.  
+- Summarise and get explicit confirmation before moving on.
 - Use the User-supplied paths and names exactly.
 - Be token efficient, concise but detailed enough for best User Experience.

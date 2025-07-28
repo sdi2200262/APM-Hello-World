@@ -14,11 +14,13 @@ Project decomposition transforms Context Synthesis findings into structured task
 - **Workflow patterns** → Honor natural progression in dependencies (see §4.4)
 
 **Process & Implementation Insights:**
-- **Quality standards and validation requirements** → Integrate into task specifications and completion criteria
-- **Implementation preferences and methodologies** → Embed in task execution guidance and approach specifications
-- **Process constraints and workflow requirements** → Apply to relevant tasks with explicit integration documentation
-- **Coordination and tracking requirements** → Incorporate into task-level or phase-level implementation steps
-- **Tool preferences and technical constraints** → Specify in task guidance and execution requirements
+- **Quality standards and validation requirements** → Convert to explicit task objectives, acceptance criteria, and validation steps
+- **Implementation preferences and methodologies** → Specify as mandatory task execution approach and procedural requirements  
+- **Process constraints and workflow requirements** → Embed as specific task steps, constraints, and coordination protocols
+- **Coordination and tracking requirements** → Structure as explicit user interaction steps and review checkpoints
+- **Tool preferences and technical constraints** → Detail in task guidance as mandatory technical specifications
+
+**Integration Verification:** During each phase cycle, audit that emphasized user requirements appear as explicit task components, not background assumptions.
 
 ### 1.2. Project Breakdown Sequence
 The Setup Agent is to follow this systematic high-level-to-detail progression with mandatory progression gates and integration verification:
@@ -151,7 +153,10 @@ Create **completely empty** `Implementation_Plan.md` file in working directory t
 Sections 4.1-4.4 are chat operations for conceptual planning. Section 4.5 is file operation for documentation.
 
 ### 4.1. Task Identification & Scope Definition
-Identify all tasks required for current phase completion using retained Context Synthesis insights:
+Identify all tasks required for current phase completion using retained Context Synthesis insights.
+
+#### Context Integration Statement
+**Before task identification**, explicitly state relevant retained insights for current phase: "From Context Synthesis, I retained [specific requirements/constraints/preferences]. For this phase, these influence task creation by [specific considerations or 'provide general project context but no direct task-level requirements']."
 
 #### Task Identification Process
 - Transform phase objectives into focused tasks with single achievable units of work
@@ -187,13 +192,23 @@ Determine whether tasks require Implementation Agent execution or User guidance:
 ### 4.2. Execution Pattern Classification
 Determine execution pattern for each identified task in §4.1 through systematic assessment:
 
-#### Classification Questions
-For each task, assess:
-- Is the unit of work of this task a product of multiple sequential actions with "first this, then that" progression?
-- Would the task execution benefit if there were internal user-approval checkpoints for clarity and reassurance or even guidance?
-- Can Implementation Agent complete entire task in single focused exchange?
-- Would task benefit from Ad-Hoc research as first initial step?
-- Do process requirements or quality standards necessitate validation checkpoints, review steps or other mandatory steps within the task?
+#### Classification Assessment Questions
+For each task, consider these balanced factors:
+- **Task Complexity**: Is this work naturally cohesive or does it involve multiple distinct actions?
+- **Internal Dependencies**: Are there genuine "first this, then that" requirements within the task?
+- **User Interaction Needs**: Would progress checkpoints or user guidance improve task execution?
+- **Validation Requirements**: Do process requirements suggest intermediate review/feedback points by the User?
+- **Technical Scope**: Can the technical work be completed as one focused effort?
+
+#### Edge Case Guidance
+**When Classification is Uncertain:**
+- **External platform actions**: Multi-step when requires user guidance through complex configuration; single-step for simple setup with clear instructions
+- **Complex technical work**: Multi-step if involves multiple distinct technical phases; single-step if *a bit* complex but cohesive
+- **User coordination required**: Multi-step when coordination is substantive or collaboration is required
+- **Research + implementation**: Multi-step if research findings affect/benefit implementation approach or is explicitly required
+
+#### Classification Reasoning
+**For each task individually**, state the workflow reasoning: "Task [X.Y] involves [description of what needs to be done]. Based on [workflow complexity/user requirements/natural breakpoints/technical dependencies], this requires [single-step/multi-step] execution because [specific rationale for the classification decision]."
 
 #### Pattern Assignment
 - **Single-step**: No internal sequential dependencies, completable in one exchange, with process requirements integrated into execution
@@ -213,12 +228,23 @@ For each multi-step task you identified and presented in §4.2:
 - What process requirements or quality standards require explicit validation or review steps?
 - How can step count vary naturally based on actual workflow complexity rather than following established patterns?
 
+#### Step Breakdown Reasoning
+**For each multi-step task individually**, explain the step logic: "Task [X.Y] accomplishes [goal description]. The natural workflow progression requires [reasoning for breakpoints including technical dependencies/user coordination needs/validation requirements/natural pause points], resulting in [X] steps because [specific rationale for step count and sequence]. Steps are:"
+
 #### Step Definition Process
 - Base step count on actual workflow dependencies and process requirements for unit of work completion, not predetermined patterns
-- **Naturally vary step count from 2-6 steps** based on genuine workflow complexity and process requirements
+- **Naturally vary step count up to 6 steps** based on genuine workflow complexity and process requirements
+- **If a task needs more than 6 steps to complete consider splitting into logically separated tasks**
 - Each step builds upon previous step with clear advancement and incorporates relevant quality standards
 - Use numbered list format with clear description of step content including implementation specifications
 - **Avoid rigid step count patterns** - let workflow dependencies determine natural progression
+
+#### Step Quality Requirements
+Each step should be:
+- **Actionable**: Clear what the Implementation Agent needs to do
+- **Verifiable**: Has obvious completion criteria or deliverable
+- **Progressive**: Advances the task meaningfully toward completion
+- **Appropriately Granular**: Neither too high-level nor micro-management detail
 
 #### Multi-step Task Presentation  
 Present **in chat** all multi-step tasks with numbered list step breakdown including process integration
@@ -311,6 +337,6 @@ Present **in chat** high-level plan statistics:
 - Reference detailed breakdown reasoning from previous chat exchanges (§2-§4)
 - Confirm that Context Synthesis insights, including process requirements and quality standards, are reflected in task specifications
 - Handle modification requests through targeted revisions to affected plan sections
-- Iterate until explicit User approval to proceed to Implementation Plan Creation Guide
+- Iterate until explicit User approval to proceed to Implementation Plan Review Guide
 
 **End of Guide**

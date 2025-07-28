@@ -1,100 +1,67 @@
 # APM v0.4 - Implementation Plan Format Guide
-This guide explains how Setup Agents convert simple Implementation Plan files into detailed, structured APM artifacts. Enhanced task details help Manager Agents create precise Task Assignment Prompts, supporting Implementation Agent success. It defines two Implementation Plan variants: 
-- Markdown
-- JSON
-Planning duties are split between the *Setup Agent* and the *Manager Agent*.
+This guide explains how to transform Implementation Plan files into detailed, structured APM artifacts and how to maintain them throughout APM sessions. Enhanced task details help Manager Agents create precise Task Assignment Prompts while preserving all task content and structure from the reviewed file. It also explains Manager Agent maintenance responsibilities of the live Implementation Plan artifact throughout an APM session.
 
-## 1. Format Enhancement Overview
+## 1. Implementation Plan Enhancement Overview
 Transform simple project decomposition file into detailed Implementation Plan artifact:
 
-**Enhancement Chain:**
-- **Simple File** → Basic phases, tasks, agents, dependencies from project decomposition
-- **Enhanced Format** → Detailed objectives, concrete outputs, precise guidance, structured formatting, detailed instructions
-- **Result** → Manager Agent is able to create highly specific Task Assignment Prompts for Implementation Agent success
+**Enhancement Process:**
+- **Simple File** → Basic task descriptions, agent assignments, dependencies from review phase
+- **Enhanced Format** → Detailed, structured task descriptions with clear deliverables and explicit, detailed instructions for Implementation Agent success
+
+**Content Preservation:**
+Task content, objectives, execution patterns, agent assignments, and dependencies remain identical to reviewed file. Enhancement adds detail level and structured formatting without changing what tasks accomplish or how they're executed.
 
 **Enhancement Purpose:**
-Enable Manager Agents to reference clear deliverables, provide explicit instructions with specific constraints, and concrete context for cross-agent dependencies when creating Implementation Agent task assignments.
+Enable Manager Agents to create precise Task Assignment Prompts through detailed task specifications while maintaining all reviewed task boundaries and structure.
 
-## 2. Phase-by-Phase Enhancement Process
-Transform simple file content into detailed artifact format **one phase at a time**:
+## 2. Document Structure Specifications
 
-### 2.1. Phase Enhancement Sequence
-For each phase in simple `Implementation_Plan.md`file:
-- Read current phase tasks, agents, and basic descriptions
-- Enhance each task with detailed meta-fields, structured formatting and detailed instructions
-- Apply document structure specifications from §3 
-- Move to next phase only after current phase enhancement complete
-
-### 2.2. Task Enhancement Requirements
-Transform each simple task entry into detailed task block defined in §3.3:
-
-**Objective Enhancement:**
-- Convert basic task name into one-sentence goal statement
-- Ensure objective reflects concrete achievement, complete unit of work and value delivery  
-
-**Output Specification:**
-- Transform simple descriptions into specific deliverables with file paths
-- When possible, include concrete artifacts Manager Agent can reference for Task Assignment Prompts
-
-**Guidance Development:**
-- Add constraints, requirements, and technical specifications
-- Include dependency references in proper format: "Depends on: Task X.Y Output (+ by Agent Z - if cross-agent)" 
-- Provide context enabling Manager Agent to create precise Implementation Agent instructions
-**Subtask Description Enhancement:**
-- For **multi-step tasks**: Expand each sequential step into a clear, detailed, actionable instruction, preserving workflow order and clarifying dependencies.
-- For **single-step tasks**: Use an unordered list of concise, detailed instructions sufficient for task completion in one attempt.
-- In all cases, ensure subtask descriptions provide enough context and clarity for reliable execution, and maintain the original workflow sequence from the simple file while increasing precision.
-
-## 3. Document Structure Specifications
-
-### 3.1. Document Header (Lines 1‑15)
+### 2.1. Document Header (Lines 1‑15)
 ```markdown
 # <Project Name> – Implementation Plan 
 
-**Memory Strategy:**  [Leave empty - determined during Memory Root Creation phase]
-**Last Modification:** [Summary of last modification by Manager Agent here]
-**Project Overview:** [High-level project overview here]
+**Memory Strategy:**  [Determined during Memory Root Creation phase]
+**Last Modification:** [Summary of last modification by Manager Agent]
+**Project Overview:** [High-level project overview with context and objectives]
 ```
 Keep this header < 15 lines so diff tools can catch version bumps cheaply.
 
-### 3.2. Phase Sections
+### 2.2. Phase Sections
 - Use level 2 headings (`##`) for phases: `## Phase <n>: <Name>`.
-- Each phase groups related tasks (e.g., refactoring, feature rollout).
+- Each phase groups related tasks as determined during project decomposition
 - For small or strictly linear projects, omit phases and list tasks directly under the header.
 
-### 3.3. Task Blocks
+### 2.3. Task Blocks
 - Use a level 3 heading (`###`) for each task, assigned to one agent:  
     `### Task <n.m> – <Title> │ <Agent_<Domain>>`
 - Each task is a focused, actionable unit of work for an Implementation Agent with one clear objective that delivers independent value.
 - Directly under the heading, add an unordered list with these meta-fields:
-    - **Objective:** One-sentence task goal.
-    - **Output:** Concrete deliverable (e.g., function, module, PR).
-    - **Guidance:** Key constraints or special requirements (e.g., library, API contract).
+    - **Objective:** One-sentence task goal with comprehensive context
+    - **Output:** Concrete deliverable with detailed specifications (e.g., function, module, configuration)
+    - **Guidance:** Key constraints, requirements, and implementation approach with detailed context
 
-### 3.4. Sub-Task Formatting
+### 2.4. Sub-Task Formatting
 Sub-tasks break down a parent task into logical steps and must be included for every task:
 
 **Single-step format [unordered list (`-`)]:**
 ```markdown
-- Do activity/component 1
-- Do activity/component 2
-- Do activity/component 3
-(...)
+- Detailed activity/component 1 with comprehensive specifications
+- Detailed activity/component 2 with comprehensive specifications
+- (...)
 ```
 
 **Multi-step format [ordered list (`1.`, `2.`, ...)]:**
 ```markdown
-1. **Step Name:** Step description with clear action.
-2. **Step Name:** Step description with clear action.
-3. **Step Name:** Step description with clear action.
+1. **Step Name:** Detailed step description with clear action and comprehensive context.
+2. **Step Name:** Detailed step description with clear action and comprehensive context.
 (...)
 ```
 
-### 3.5. Task Dependency Declaration Format
+### 2.5. Task Dependency Declaration Format
 **Producer Task:** Specify concrete deliverables in the `Output` field for consumer task integration
 **Consumer Task:** Reference dependency in `Guidance` field using format: `"Depends on: Task X.Y Output (+ by Agent Z - if cross-agent)"`
 
-### 3.6. Phase Summary Format (Manager Agent)
+### 2.6. Phase Summary Format (Manager Agent)
 At phase completion, append summaries to Implementation Plan under current phase and before next phase:
 
 ```markdown
@@ -106,51 +73,87 @@ At phase completion, append summaries to Implementation Plan under current phase
 > Compatibility Notes: ...
 ```
 
-## 4. JSON Variant Specification
-JSON Implementation Plans follow identical rules and structure as Markdown but use schema validation at `/prompts/schemas/implementation_plan.schema.json`. All requirements for task meta-fields, agent assignments, dependencies, summaries, and policies apply as described above.
+## 3. JSON Variant Specification
+JSON Implementation Plans follow identical rules and structure as Markdown but use schema validation at `/prompts/schemas/implementation_plan.schema.json`. All requirements for task meta-fields, agent assignments, dependencies, summaries, and detailed specifications apply as described above.
 
-## 5. Setup Agent Responsibilities
-Transform simple Implementation Plan file into detailed APM artifact:
+## 4. Setup Agent Responsibilities
+Transform reviewed Implementation Plan file into detailed APM artifact:
 
-1. **Variant Selection**
-    - Choose MD/JSON based on user preference from Context Synthesis Phase (default: Markdown)
+### 4.1. Enhancement Process
+**Content Preservation Requirements:**
+- Maintain all task objectives, execution patterns (subtask steps or subtask instructions), and agent assignments from reviewed file
+- Preserve all dependencies and phase structure exactly as reviewed
+- Keep task boundaries and scope identical to reviewed file
 
-2. **File Enhancement**
-    - Read simple Implementation Plan file from project decomposition phase
-    - Apply phase-by-phase enhancement process from §2 transforming basic task entries into detailed task blocks with meta-fields
+**Detail Enhancement Requirements:**
+- Transform basic task descriptions into comprehensive specifications
+- Add detailed context to task objectives, outputs, and guidance
+- Enhance subtask descriptions with comprehensive instructions and technical context
+- Provide detailed specifications that enable Manager Agent to create precise Task Assignment Prompts
 
-3. **Document Formatting**
-    - Apply document structure specifications from §3 creating proper headings, meta-fields, and formatting
-    - Validate JSON structure against schema if JSON variant selected
+### 4.2. Phase-by-Phase Enhancement
+**Enhancement Execution:**
+- Enhance the Implementation Plan one phase section at a time, proceeding sequentially through the file.
+- For each phase:
+    - Read the corresponding section in the reviewed file to fully understand its structure, tasks, and dependencies.
+    - Apply the document structure specifications from §2 to reformat and enrich the phase, ensuring all tasks are transformed into detailed task blocks with enhanced meta-fields.
+    - Enhance each tasks contents following §4.1. guidance, ensuring that the content of the reviewed file is retained, only with more detailed context. 
+    - Complete the enhancement of the current phase before moving on to the next, ensuring no phase is skipped or partially enhanced.
+- Continue this process until all phases in the Implementation Plan have been fully enhanced and the entire file meets the detailed specification requirements.
 
-4. **Quality Assurance**
-    - Present enhanced plan for user review and feedback ensuring it provides sufficient detail for Manager Agent Task Assignment Prompt creation
-    - Iterate based on user input until plan is explicitly approved
+**Quality Assurance:**
+- After each phase enhancement, review the updated content to confirm that detailed specifications are sufficient for Manager Agent Task Assignment Prompt creation.
+- Ensure all original task content, execution patterns, and agent assignments are preserved from the reviewed file.
+- Iterate and refine enhancements based on user feedback until the plan provides the necessary detail for systematic and effective task execution.
 
-## 6. Manager Agent Responsibilities
+## 5. Manager Agent Responsibilities
 Maintain detailed Implementation Plan throughout APM session:
 
-1. **Plan Validation & Improvement**
-    - Read guide, evaluate plan
-    - Validate JSON if used
-    - Suggest improvements only for integrity issues
-    - Confirm understanding before execution
+### 5.1. Plan Validation & Improvement
+**Initial Plan Assessment:**
+- Read guide, evaluate plan structure and detail level
+- Validate JSON structure against schema if JSON variant used
+- Assess plan integrity and request more detail from Setup Agent if needed
 
-2. **Live Plan Maintenance**
-    - Sync plan with project changes
-    - Add/remove/modify phases and tasks as needed
-    - Update "Last Modification" for all changes
-    - Keep task numbering and dependencies consistent
+**Validation Focus:**
+- Confirm detailed specifications support precise Task Assignment Prompt creation
+- Verify task meta-fields provide sufficient context for Implementation Agent coordination
+- Ensure enhanced guidance enables effective task execution management
 
-3. **Execution Coordination**
-    - Manage cross-agent handoffs per dependencies
-    - Extract producer task outputs, inject into consumer task assignments
-    - Issue task prompts per plan
+### 5.2. Live Plan Maintenance
+**Plan Updates:**
+- Sync plan with project changes while maintaining detailed specification level
+- Add/remove/modify phases and tasks as needed with comprehensive context
+- Update "Last Modification" for all changes
+- Keep task numbering and dependencies consistent
 
-4. **Phase Management**
-    - Track phase completion
-    - Write detailed phase summaries in Memory Root
-    - Add concise phase summaries to plan before next phase following Memory System Guide
+**Structure Maintenance:**
+- Maintain enhanced meta-field structure during plan updates
+- Preserve detailed specifications when modifying task content
+- Update task details as implementation progresses and requirements evolve
+
+### 5.3. Execution Coordination
+**Task Assignment Creation:**
+- Use detailed meta-fields to create comprehensive Task Assignment Prompts
+- Extract enhanced producer task outputs for consumer task assignment integration
+- Reference detailed guidance for Implementation Agent context and constraints
+- Leverage enhanced specifications for precise task instruction development
+
+**Cross-Agent Coordination:**
+- Manage cross-agent handoffs using detailed dependency specifications
+- Use enhanced output specifications for seamless task integration
+- Reference comprehensive guidance for effective agent coordination
+
+### 5.4. Phase Management
+**Phase Execution:**
+- Track phase completion using detailed task specifications
+- Manage phase transitions with comprehensive context understanding
+- Use enhanced plan structure for effective phase coordination
+
+**Documentation:**
+- Write detailed phase summaries in Memory Root using enhanced task context
+- Add concise phase summaries to plan before next phase following Memory System Guide
+- Maintain comprehensive project documentation through enhanced plan structure
 
 ---
 

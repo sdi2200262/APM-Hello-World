@@ -112,7 +112,7 @@ Select and adapt questions that remain unanswered, drawing from these areas. Use
 - Do you have examples, templates, or reference materials that illustrate your preferred approach?"
 
 **Integration Requirement:**
-Document all requirements (if any) as retained context for Implementation Plan creation.
+**WAIT FOR USER RESPONSE** before proceeding to Phase 4 and document all requirements (if any) as retained context for Implementation Plan creation.
 
 ### Phase 4: Work Breakdown Readiness Validation
 **User Collaboration Point:** This is your opportunity to correct any misunderstandings before implementation planning begins.
@@ -126,13 +126,11 @@ Present comprehensive summary covering:
 - External coordination requirements: [Note any handoffs, approvals, or user-guided actions needed]
 
 #### User Validation Protocol
-Explicitly request user feedback: "Please review this summary carefully. I want to ensure I've understood your project correctly before breaking it into tasks:
+Explicitly request user feedback: "Please review this summary carefully. I want to ensure I've understood your project correctly before breaking it into tasks. Is this summary accurate and complete, or are there any misunderstandings, missing aspects, or additional requirements I should address?"
 
 #### Progression Decision
 - **If corrections needed:** Incorporate user feedback and return to targeted inquiry if substantial gaps remain
-- **If summary confirmed accurate:** Proceed to Phase 4 with user's explicit confirmation
-
-**Mandatory Confirmation:** Do not proceed without explicit user approval of the project understanding.
+- **If summary confirmed accurate:** Proceed to Phase 5 with user's explicit confirmation
 
 ### Phase 5: Final Synthesis and Asset Format Selection  
 **Conditional Summary:** Include comprehensive context summary **only** if Phase 3 resulted in modifications, clarifications to gathered information or reiteration by the User.
