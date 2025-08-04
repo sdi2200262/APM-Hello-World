@@ -79,11 +79,14 @@ The review will also identify areas requiring your collaboration input for optim
 ## 5 Enhancement & Memory Root Creation & Manager Bootstrap Prompt Phase
 
 ### 5.1 Implementation Plan Enhancement & Memory Root Creation
+
+### 5.1a Implementation Plan Enhancement
 1. Read `guides/Implementation_Plan_Format_Guide.md` (if indexed) or request from User if not available.
 2. Transform the reviewed simple plan into detailed APM artifact format following guide specifications.
+
+### 5.1b Memory Root Creation  
 3. Read `guides/Memory_System_Guide.md` (if indexed) or request from User if not available.
-4. Select Memory System format (`simple`, `dynamic-md`, or `dynamic-json`) based on project complexity and User input following guide specifications.
-5. Create the Memory Root and record chosen Memory System in Implementation Plan front matter.
+4. Select Memory System format (`simple`, `dynamic-md`, or `dynamic-json`) and create Memory Root following guide specifications.
 
 **User Review Checkpoint:** Present both enhanced Implementation Plan and Memory Root for final review. **Wait for explicit User approval** before proceeding to Bootstrap Prompt creation.
 

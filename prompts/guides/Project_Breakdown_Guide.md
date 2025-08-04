@@ -1,4 +1,4 @@
-# APM v0.4 - Project Decomposition Guide
+# APM v0.4 - Project Breakdown Guide
 This guide defines how Setup Agents transform Context Synthesis findings into structured, agent-assigned task breakdowns. Following systematic high-level-to-detail methodology, it prevents template matching through strategic workflow sequencing and chat-to-file output switching. The guide ensures task breakdown precision required for Implementation Agent success while minimizing Manager Agent coordination overhead.
 
 ## 1. Context Integration & Breakdown Overview
@@ -11,7 +11,7 @@ Project decomposition transforms Context Synthesis findings into structured task
 - **Complexity flags** → Create appropriately granular tasks (see §4.1)
 - **External dependencies** → Plan User guidance for actions outside IDE (see §4.1)
 - **Investigation needs** → Plan Ad-Hoc delegation steps (see §4.2)
-- **Workflow patterns** → Honor natural progression in dependencies (see §4.4)
+- **Workflow patterns** → Honor natural progression in dependencies (see §4.5)
 
 **Process & Implementation Insights:**
 - **Quality standards and validation requirements** → Convert to explicit task objectives, acceptance criteria, and validation steps
@@ -41,7 +41,7 @@ Strategic context switching prevents pattern matching:
 **File Operations**: Document each completed phase cycle, agent splitting updates, cross-agent dependency additions
 **Context Breaks**: File writes interrupt continuous chat writing, providing fresh perspective for each subsequent phases thus avoiding pattern-matching
 
-Simple file format (basic indentation, minimal structure - see §4.5) prevents template formation while preserving content for later formatting through `guides/Implementation_Plan_Format_Guide.md`
+Simple file format (basic indentation, minimal structure - see §4.6) prevents template formation while preserving content for later formatting through `guides/Implementation_Plan_Format_Guide.md`
 
 ## 2. Domain Analysis & Agent Assignment
 
@@ -149,130 +149,84 @@ After presenting agent team assignments (see §2.2), immediately write **in chat
 ### 3.3. Implementation Plan File Initialization
 Create **completely empty** `Implementation_Plan.md` file in working directory to receive phase content during upcoming phase cycles. Afterwards proceed to phase cycles (see §4). 
 
-## 4. Phase Cycle Execution (Core Repetitive Process)
-Sections 4.1-4.4 are chat operations for conceptual planning. Section 4.5 is file operation for documentation.
+## 4. Phase Cycle Execution
 
-### 4.1. Task Identification & Scope Definition
-Identify all tasks required for current phase completion using retained Context Synthesis insights.
+### 4.1. Phase Context Integration & Task Identification
+**Context Integration Statement**: Before task identification, explicitly state **in chat** relevant retained insights for current phase: "From Context Synthesis, I retained [specific requirements/constraints/preferences]. For this phase, these influence task creation by [specific considerations or 'provide general project context but no direct task-level requirements']."
 
-#### Context Integration Statement
-**Before task identification**, explicitly state relevant retained insights for current phase: "From Context Synthesis, I retained [specific requirements/constraints/preferences]. For this phase, these influence task creation by [specific considerations or 'provide general project context but no direct task-level requirements']."
+**Task Identification with Anti-Packing Guardrails**:
+While identifying tasks for this phase, apply these tests for each potential task:
 
-#### Task Identification Process
-- Transform phase objectives into focused tasks with single achievable units of work
-- Separate activities that can be done independently into different tasks
-- If objective contains multiple distinct activities, separate into individual tasks
-- Let task complexity follow actual requirements, avoid forcing artificial consistency
-- Each task should deliver independent value toward phase completion
-- Use retained complexity flags and process requirements to create appropriately granular task scope with implementation specifications
-- Apply retained domain boundaries and quality standards to align tasks with agent assignments from §2.2
-- Integrate process constraints and implementation preferences into task scope and execution approach
+- **Single Focus Test**: "Can this be completed by one agent in one focused work session without context/mental mode switching?"
+- **Domain Boundary Test**: "Does this involve multiple unrelated technical domains or skill sets?"  
+- **Independent Value Test**: "If I split this into components, would each component deliver independent value?"
+- **Single Unit of Work Deliverable Test**: "Does completion of this task result in a deliverable that can be accomplished as a single unit of work?"
+- **Complexity Consistency Test**: "Does this task's complexity match others in the phase, or is it significantly more complex?"
 
-#### Execution Scope Determination
-Determine whether tasks require Implementation Agent execution or User guidance:
+**If any test suggests splitting, create separate tasks during identification.**
 
-**IDE Environment Capabilities:**
-- Tasks specify direct Implementation Agent execution for actions within IDE environment
-- Implementation Agents have access to same tools and environment as Setup Agent
+**Task Identification Process**: Transform phase objectives into focused tasks using retained Context Synthesis insights. Apply anti-packing guardrails continuously during identification. Each task should deliver independent value toward phase completion. No tasks should be heavy-packed and contain multiple deliverables and goals.
 
-**External Platform Action Identification:**
-- Access boundaries → Does this require interfaces outside IDE environment?
-- User account control → Does this require authentication/permissions agents cannot access?
-- Platform-specific UI → Does this involve web interfaces, dashboards, or settings panels?
-- User preference signals → Has user explicitly indicated they will handle configurations manually?
-- Process requirements → Do quality standards or validation needs require User coordination or external validation?
+**Present Task List**: After applying guardrails, present **in chat** complete task list for phase: "Task X.1: [Name], Task X.2: [Name]..." before proceeding to individual analysis.
 
-**Execution Approach:**
-- External platform actions → Tasks specify Implementation Agent guidance for User actions
-- Mixed execution tasks → Separate into agent-executable preparation + user-guided external actions
-- Guidance language → Use "guide," "provide instructions," "prepare documentation" rather than "configure," "deploy," "setup"
-- Retained investigation needs → Include dedicated research tasks or assign Research Ad-Hoc Agent
-- Process integration → Embed quality standards, validation requirements, and implementation preferences into task specifications
+### 4.2. Individual Task Complete Analysis
+**CRITICAL**: Analyze each task from 4.1 individually with complete reasoning before proceeding to next task. Never batch process multiple tasks.
 
-### 4.2. Execution Pattern Classification
-Determine execution pattern for each identified task in §4.1 through systematic assessment:
+**For each identified task, complete this full analysis in chat using these guardrails:**
 
-#### Classification Assessment Questions
-For each task, consider these balanced factors:
-- **Task Complexity**: Is this work naturally cohesive or does it involve multiple distinct actions?
-- **Internal Dependencies**: Are there genuine "first this, then that" requirements within the task?
-- **User Interaction Needs**: Would progress checkpoints or user guidance improve task execution?
-- **Validation Requirements**: Do process requirements suggest intermediate review/feedback points by the User?
-- **Technical Scope**: Can the technical work be completed as one focused effort?
+#### **Task [X.Y]: [Task Name]**
 
-#### Edge Case Guidance
-**When Classification is Uncertain:**
-- **External platform actions**: Multi-step when requires user guidance through complex configuration; single-step for simple setup with clear instructions
-- **Complex technical work**: Multi-step if involves multiple distinct technical phases; single-step if *a bit* complex but cohesive
-- **User coordination required**: Multi-step when coordination is substantive or collaboration is required
-- **Research + implementation**: Multi-step if research findings affect/benefit implementation approach or is explicitly required
+**Scope Reasoning Guardrails**: 
+This task accomplishes [specific goal] and requires [detailed scope analysis]. The deliverables are [clearly defined outputs or artifacts].
 
-#### Classification Reasoning
-**For each task individually**, state the workflow reasoning: "Task [X.Y] involves [description of what needs to be done]. Based on [workflow complexity/user requirements/natural breakpoints/technical dependencies], this requires [single-step/multi-step] execution because [specific rationale for the classification decision]."
+**Execution Scope Analysis Guardrails**:
+- **Agent Executable**: Code writing, file operations, terminal commands, configuration within IDE, testing, documentation creation, available tool-call actions
+- **User Coordination Required**: External platform dashboards, account authentication, repository settings, deployment configuration, design approval, feedback/guidance checkpoints 
+- **Mixed Tasks**: Separate into agent execution + user execution components in their logical/natural order
 
-#### Pattern Assignment
-- **Single-step**: No internal sequential dependencies, completable in one exchange, with process requirements integrated into execution
-- **Multi-step**: Sequential internal dependencies requiring progressive User confirmation, including validation or review steps when process requirements dictate
+"This task requires [specific agent actions vs user coordination]. The technical boundaries are [IDE environment capabilities vs external platform requirements]. Evidence for agent execution: [specific capabilities, available IDE tools]. Evidence for user coordination: [external platform dependencies, account access, manual configuration needs]."
 
-#### Task Classification Presentation
-Present **in chat** a list of all tasks: "Task X.Y: <Task_Name> - Agent_<Domain> - (single-step)" or "Task X.Y: <Task_Name> - Agent_<Domain> - (multi-step)"
+**Classification Decision Guardrails**:
+- **Single-step criteria**: Cohesive non-complex work completable in one exchange, no internal sequential dependencies, no user validation points needed
+- **Multi-step criteria**: Internal "first this, then that" dependencies, user confirmation needs between steps, progressive validation/clarification requirements, complex implementation benefiting from checkpoints
+- **Edge case guidance**: External platform coordination = multi-step, research needs = multi-step with research ad-hoc delegation as first step, complex technical work with natural breakpoints = multi-step, simple but multiple related activities = single-step
 
-### 4.3. Step Count Definition (Multi-step Tasks)
-Define sequential steps for each multi-step task you identified in §4.2 based on actual workflow requirements:
+"Task [X.Y] involves [detailed workflow description]. The workflow progression is [step-by-step analysis]. Based on [retained Context Synthesis insights, specific workflow factors - user confirmation needs, validation points, technical dependencies, natural breakpoints, specific user requirements], this requires [single/multi]-step execution because [specific reasoning for classification choice]."
 
-#### Step Assessment Questions
-For each multi-step task you identified and presented in §4.2:
-- How many genuine "first this, then that" dependencies exist?
-- Where do natural pause points for User confirmation occur?
-- Are there points requiring User guidance or clarification?
-- What process requirements or quality standards require explicit validation or review steps?
-- How can step count vary naturally based on actual workflow complexity rather than following established patterns?
+**Content Justification Guardrails**:
+- **Natural variation requirement**: Base count on actual complexity, not pattern matching previous tasks
+- **Single-step bullet guidelines**: up to 4 bullets based on instruction complexity and guidance needs
+- **Multi-step step guidelines**: up to 6 steps based on workflow dependencies and natural breakpoints  
+- **Quality over consistency**: Each task's content should match its individual complexity
 
-#### Step Breakdown Reasoning
-**For each multi-step task individually**, explain the step logic: "Task [X.Y] accomplishes [goal description]. The natural workflow progression requires [reasoning for breakpoints including technical dependencies/user coordination needs/validation requirements/natural pause points], resulting in [X] steps because [specific rationale for step count and sequence]. Steps are:"
+- **If Single-step**: "This needs [X] bullet points because [complexity analysis and instruction requirements]. Each bullet addresses [specific implementation guidance needs]. Bullet points are: [present bullet points in an unordered list]"
+- **If Multi-step**: "This needs [X] steps because [workflow dependency analysis]. Each step represents [natural workflow progression]. Steps are: [present steps in an ordered list]"
 
-#### Step Definition Process
-- Base step count on actual workflow dependencies and process requirements for unit of work completion, not predetermined patterns
-- **Naturally vary step count up to 6 steps** based on genuine workflow complexity and process requirements
-- **If a task needs more than 6 steps to complete consider splitting into logically separated tasks**
-- Each step builds upon previous step with clear advancement and incorporates relevant quality standards
-- Use numbered list format with clear description of step content including implementation specifications
-- **Avoid rigid step count patterns** - let workflow dependencies determine natural progression
+**Content Definition**: [Provide actual bullets or steps with reasoning applied]
 
-#### Step Quality Requirements
-Each step should be:
-- **Actionable**: Clear what the Implementation Agent needs to do
-- **Verifiable**: Has obvious completion criteria or deliverable
-- **Progressive**: Advances the task meaningfully toward completion
-- **Appropriately Granular**: Neither too high-level nor micro-management detail
+**Task Documentation**: State "Task [X.Y] analysis complete" before proceeding to next task.
 
-#### Multi-step Task Presentation  
-Present **in chat** all multi-step tasks with numbered list step breakdown including process integration
+**Repeat this complete analysis for every task identified in 4.1.**
 
-### 4.4. Dependency Assessment & Documentation
-Identify task dependencies within current phase using retained workflow relationships:
+### 4.3. Phase Dependency Assessment
+**After completing individual analysis for all phase tasks**, conduct holistic dependency review:
 
-#### Dependency Assessment
-- Look for retained "must do A before B" patterns from Context Synthesis for current phase
-- Identify genuine producer-consumer relationships between tasks you identified in §4.2
-- Define dependencies based on real workflow requirements and process constraints, not artificial ones
-- Include process dependencies such as quality gates, validation requirements, and review checkpoints
-- Minimize unnecessary dependencies - only when work requires previous outputs or process validation
-- Prefer assigning dependent tasks to same agent when possible
+**Dependency Identification**: Look for retained "must do A before B" patterns from Context Synthesis for current phase. Identify genuine producer-consumer relationships between tasks analyzed in §4.2.
 
-#### Dependency List Presentation
-Present **in chat** complete dependency list using simple notation: "Task X.Y depends on Task Z.W output"
+**Dependency Analysis**: Define dependencies based on real workflow requirements and process constraints, not artificial ones. Include process dependencies such as quality gates, validation requirements, and review checkpoints.
 
-### 4.5. Phase Documentation Procedure
-**CRITICAL WORKFLOW SEQUENCE**: Complete ALL chat presentations from §4.1-4.4 before any file operations.
+**Dependency List Presentation**: Present **in chat** complete dependency list with rationale using simple notation: "Task X.Y depends on Task Z.W output because [explicit reasoning]"
+
+### 4.4. Phase Documentation Procedure
+**CRITICAL WORKFLOW SEQUENCE**: Complete ALL individual task analyses from §4.2 and dependency assessment from §4.3 before any file operations.
 
 #### File Creation Process
-1. **Complete Phase Breakdown in Chat First**: Present all task identifications, classifications, step definitions, and dependencies **in chat** before proceeding to file documentation
-2. **File Operation Timing**: Append to `Implementation_Plan.md` only after complete phase breakdown is presented and confirmed in chat
+1. **Complete Phase Analysis in Chat First**: Present all individual task analyses and dependencies **in chat** before proceeding to file documentation
+2. **File Operation Timing**: Append to `Implementation_Plan.md` only after complete phase cycle is presented **in chat**
 3. **Single write operation**: Each phase cycle results in **exactly one** file append containing only current phase content
 
 #### Content Translation Format
-Translate completed chat presentations from §4.1-4.4 into structured file format, ensuring process requirements and implementation specifications are preserved in task descriptions:
+Translate completed individual analyses from §4.2-4.3 into structured file format, ensuring all reasoning insights and process requirements are preserved in task descriptions:
 
 **File Structure Requirements:**
 - Phase header with name and all assigned agents: `Phase <n>: <Phase_Name> - <All_Agents_Assigned>`
@@ -280,8 +234,8 @@ Translate completed chat presentations from §4.1-4.4 into structured file forma
 - Multi-step tasks use numbered list format (1, 2, 3...)
 - Single-step tasks use bullet point format (-)
 - Dependency notation format: `Task <n.2>: <Task_Name> - Agent_<Domain> - Depends on Task <n.1> output`
-- Preserve all process requirements and implementation specifications from chat breakdown
-- Preserve step descriptions and implementation integration exactly as presented in chat
+- Preserve all individual analysis insights, process requirements, and implementation specifications from chat breakdown
+- Preserve content descriptions exactly as justified in individual analysis
 
 ## 5. Final Review & Cross-Agent Integration
 
@@ -303,7 +257,7 @@ For overloaded agents requiring subdivision:
 #### Agent Reassignment File Update
 Update `Implementation_Plan.md` with revised agent assignments:
 - Modify all affected task entries with new sub-agent assignments
-- Preserve exact task content, dependencies, step definitions, and process specifications during reassignment
+- Preserve exact task content, dependencies, instruction/step definitions, and process specifications during reassignment
 - Ensure file reflects **final agent assignment** before proceeding to §5.2
 
 ### 5.2. Cross-Agent Dependency Marking
