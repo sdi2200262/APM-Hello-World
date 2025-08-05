@@ -10,17 +10,17 @@ Memory duties are split between the *Setup Agent* and the *Manager Agent*. Detai
 Summary of the three Memory System variants, their storage layouts, log formats and memory summarization strategies:
 
 - Simple
-    - Storage layout: Single file `Memory_Bank.md` at workspace root
+    - Storage layout: Single file `Memory_Bank.md` in the User-selected storage location
     - Log format: Inline subsections inside the same MD file
     - Each inline subsection acts as a task memory log; summaries are appended after each logical group of tasks (if any) is complete. Summarization approach is determined by the Manager Agent.
 
 - Dynamic‑MD
-    - Storage layout: Folder `Memory/` + `Memory_Root.md` + sub‑folders `Phase_XX_<slug>/`
+    - Storage layout: Folder `Memory/` + `Memory_Root.md` + sub‑folders `Phase_XX_<slug>/` in the User-selected storage location,
     - Log format: One `Task_XX_<slug>.md` Memory Log per task
     - After each phase completes, an inline subsection is appended to the `Memory_Root.md` file summarizing the phase.
 
 - Dynamic‑JSON
-    - Storage layout: Same as Dynamic‑MD (markdown root)
+    - Storage layout: Same as Dynamic‑MD (markdown root) in the User-selected storage location,
     - Log format: One `Task_XX_<slug>.json` Memory Log per task
     - After each phase completes, an inline subsection is appended to the `Memory_Root.md` file summarizing the phase.
 
@@ -104,6 +104,7 @@ Main responsibilities of the Manager Agent when maintaining the Memory System du
     - `Task_Y_Z_<slug>.md` (Dynamic‑MD)
     - `Task_Y_Z_<slug>.json` (Dynamic‑JSON)
 
+**All Memory Logs for the current phase must be created BEFORE the first Task Assingment Prompt for each task.**
 **Use task ID and title from Implementation Plan (exclude agent assignment).**
 **Example: Task "Task 2.1 - Deploy Updates | Agent_Backend" → `Task_2_1_Deploy_Updates.md`**
 
