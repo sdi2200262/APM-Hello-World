@@ -39,19 +39,22 @@ Conduct systematic review of simple Implementation Plan to identify and fix crit
 **Enumeration Requirement**: For each task, explicitly list activities in chat
 - **List Activities**: What specific activities does this task accomplish? List each distinct activity in chat.
 - **Evaluate Independence**: Would each listed activity deliver independent value if completed separately, excluding sequential workflow dependencies within the same domain? State thinking in chat.
-- **Decision**: If multiple independent activities exist → task is packed → identify split points and create separate tasks
+- **Assess Integration Value**: Do activities share common deliverable, context, or workflow coherence? Would splitting create coordination overhead exceeding benefits?
+- **Decision**: If multiple truly independent activities exist AND splitting provides clear benefits over coordination costs → task is packed → identify split points and create separate tasks
 
 ### 2.2. Classification Test
 **Enumeration Requirement**: For each task, explicitly list workflow steps in chat
 - **List Steps**: What are the sequential steps required to complete this task? List each step in chat.
 - **Evaluate Validation Needs**: For each listed step, does it benefit from user confirmation, validation, or guidance before proceeding to the next step? State thinking in chat.
-- **Decision**: If intermediate validation/confirmation points would be beneficial → multi-step classification. If completable without validation points → single-step classification
+- **Assess Workflow Efficiency**: Would validation points genuinely improve task success, or would single-step completion with iteration be more efficient?
+- **Decision**: If intermediate validation points are **necessary** for task success (not just beneficial) AND provide clear value over workflow interruption → multi-step classification. If completable efficiently without validation points → single-step classification
 
 ### 2.3. Template Matching Test
 **Enumeration Requirement**: For each task, explicitly list format comparisons in chat
 - **List Format Comparison**: How many bullets/steps does this task have? List other tasks in the plan with identical formatting in chat.
 - **Evaluate Complexity Match**: Does this task's actual complexity and instruction requirements match the listed tasks with similar formatting? State thinking in chat.
-- **Decision**: If formatting matches but complexity differs significantly → template matching violation → adjust format to reflect actual task complexity based on task classification
+- **Assess Natural Alignment**: Could similar complexity naturally result in similar formatting, or does this represent problematic pattern matching?
+- **Decision**: If formatting matches but complexity genuinely differs AND this represents pattern-driven decisions rather than natural complexity alignment → template matching violation → adjust format to reflect actual task complexity
 
 ### 2.4. User Requirements Test
 **Enumeration Requirement**: For each task, explicitly list applicable requirements in chat
@@ -86,16 +89,19 @@ Conduct systematic review of simple Implementation Plan to identify and fix crit
 1. **Task Packing Test Application**:
    - List Activities: [enumerate all distinct activities]
    - Independence Analysis: [evaluate each activity]
-   - Decision: [packed/properly scoped + reasoning]
+   - Integration Value Assessment: [evaluate workflow coherence and coordination costs]
+   - Decision: [packed/properly scoped + reasoning including cost-benefit analysis]
 
 2. **Classification Test Application**:
    - List Steps: [enumerate all workflow steps]
    - Validation Analysis: [evaluate each step's validation needs]
-   - Decision: [single-step/multi-step + reasoning]
+   - Workflow Efficiency Assessment: [evaluate necessity vs interruption cost]
+   - Decision: [single-step/multi-step + reasoning including efficiency considerations]
 
 3. **Template Matching Test Application**:
    - List Format Comparison: [enumerate similar tasks and their formatting]
    - Complexity Analysis: [evaluate complexity match]
+   - Natural Alignment Assessment: [evaluate if similarity is coincidental vs problematic]
    - Decision: [natural formatting/template matching + reasoning]
 
 4. **User Requirements Test Application**:
@@ -108,33 +114,33 @@ Conduct systematic review of simple Implementation Plan to identify and fix crit
    - Capability Analysis: [categorize agent vs user actions]
    - Decision: [proper scope/needs coordination + reasoning]
 
-**Apply any critical fixes or modifications needed to current task in the Implementation Plan.**
-**Task Review Conclusion**: State "Task [X.Y] review complete - [critical fixes applied/no issues found]"
+**Catalog any critical fixes or user collaboration items identified for current task.**
+**Task Review Conclusion**: State "Task [X.Y] review complete - [critical fixes identified/no issues found]"
 
 ### 3.2. Critical Fix Execution
-**For clear violations identified through testing, fix immediately:**
+**For clear violations identified through testing, catalog for systematic application:**
 
 #### Critical Fix Categories
-- **Task Packing Violations**: Split tasks with multiple independent activities into separate focused tasks
-- **Classification Errors**: Correct single-step/multi-step designation based on validation needs analysis
-- **Template Matching Violations**: Adjust formatting to match actual task complexity
-- **Missing User Requirements**: Add explicit user requirements as actionable task items
-- **Execution Scope Errors**: Separate external platform actions requiring user coordination
+- **Clear Task Packing Violations**: Tasks with multiple independent activities where splitting provides clear benefits over coordination costs
+- **Obvious Classification Errors**: Tasks where user validation needs clearly don't match current format
+- **Genuine Template Matching Violations**: Pattern-driven formatting that doesn't reflect actual task complexity
+- **Missing User Requirements**: Emphasized requirements absent from task specifications
+- **Execution Scope Errors**: External platform actions not properly separated from agent-executable work
 
 #### Critical Fix Documentation
-**For each critical fix applied:**
+**For each critical fix identified:**
 - **Issue Identified**: [Specific problem found through testing]
 - **Evidence**: [Enumerated list that revealed the problem]
-- **Fix Applied**: [Specific changes made to task]
-- **Reasoning**: [Why this fix addresses the issue]
+- **Fix Required**: [Specific changes needed for task]
+- **Reasoning**: [Why this fix would improve task execution]
 
-**State in chat**: "Critical fix applied to Task [X.Y]: [fix description and reasoning]"
+**State in chat**: "Critical fix identified for Task [X.Y]: [fix description and reasoning]"
 
 ### 3.3. User Collaboration Cataloging
 **Document borderline issues requiring user input for later presentation:**
 
 #### User Collaboration Categories
-- **Borderline Packing**: Tasks that could reasonably be split but have some integration value
+- **Borderline Packing**: Tasks that could reasonably be split but have integration value
 - **Classification Ambiguity**: Tasks that could work as either single-step or multi-step
 - **Formatting Preferences**: Template matching cases where user preference matters
 - **Granularity Options**: Tasks that could be more/less granular based on user workflow preference
@@ -147,13 +153,20 @@ Conduct systematic review of simple Implementation Plan to identify and fix crit
 
 #### Phase Summary
 - **Tasks Reviewed**: [total number]
-- **Critical Fixes Applied**: [count and brief description]
+- **Critical Fixes Identified**: [count and brief description]
 - **User Collaboration Items**: [count for later presentation]
-- **Phase Integrity Check**: Verify phase maintains logical structure after fixes
+- **Phase Integrity Check**: Verify phase maintains logical structure after proposed fixes
+
+#### Phase-End Critical Fix Application
+**Apply all cataloged critical fixes systematically:**
+- Review all identified critical fixes for consistency
+- Apply fixes to Implementation Plan with proper documentation
+- Update task numbering and dependencies as needed
+- Verify no conflicts between fixes
 
 **State completion**: "Phase [X] review complete - [X] critical fixes applied, [Y] user collaboration items cataloged"
 
-**Progression Gate**: Cannot proceed to next phase without completing all tasks and stating completion.
+**Progression Gate**: Cannot proceed to next phase without completing all tasks and applying critical fixes.
 
 ---
 

@@ -43,7 +43,7 @@ Storage rule after answers:
 ---
 
 ## 3 Project Decomposition & Plan Creation Phase
-1. Read `guides/Project_Decomposition_Guide.md` (if indexed) or request from User if not available.
+1. Read `guides/Project_Breakdown_Guide.md` (if indexed) or request from User if not available.
 2. Following the guide methodology, create simple `Implementation_Plan.md` using systematic project breakdown approach.
 3. **Immediate User Review Request:** In the same response after presenting the simple Implementation Plan, ask the User: 
 

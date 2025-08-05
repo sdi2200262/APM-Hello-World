@@ -76,9 +76,8 @@ Evaluate potential domains against coherence requirements for Implementation Age
 - Quality standards and validation requirements support coherent domain organization**
 
 **Boundary Validation:**
-- Domain separation minimizes coordination and context-integration overhead for Manager Agent
+- Domain separation reduces Manager coordination overhead and avoids Implementation Agent confusion
 - Each domain delivers independent value while supporting overall project goals
-- Domain scope prevents Implementation Agent confusion
 - Process constraints and quality requirements are consistently applicable within domain boundaries
 
 ### 2.2. Initial Implementation Agent Team Creation
@@ -170,41 +169,46 @@ While identifying tasks for this phase, apply these tests for each potential tas
 **Present Task List**: After applying guardrails, present **in chat** complete task list for phase: "Task X.1: [Name], Task X.2: [Name]..." before proceeding to individual analysis.
 
 ### 4.2. Individual Task Complete Analysis
-**CRITICAL**: Analyze each task from 4.1 individually with complete reasoning before proceeding to next task. Never batch process multiple tasks.
+**CRITICAL**: Analyze each task from 4.1 individually with complete reasoning before proceeding to next task. Never batch process multiple tasks.**For each identified task, complete the following systematic analysis in chat:**
 
-**For each identified task, complete this full analysis in chat using these guardrails:**
-
+```
 #### **Task [X.Y]: [Task Name]**
 
-**Scope Reasoning Guardrails**: 
+**Scope Analysis:** 
 This task accomplishes [specific goal] and requires [detailed scope analysis]. The deliverables are [clearly defined outputs or artifacts].
 
-**Execution Scope Analysis Guardrails**:
-- **Agent Executable**: Code writing, file operations, terminal commands, configuration within IDE, testing, documentation creation, available tool-call actions
-- **User Coordination Required**: External platform dashboards, account authentication, repository settings, deployment configuration, design approval, feedback/guidance checkpoints 
-- **Mixed Tasks**: Separate into agent execution + user execution components in their logical/natural order
+**Execution Assessment:**
+Analyze what this task requires:
+- **Agent Capabilities**: Code writing, file operations, terminal commands, IDE configuration, testing, documentation, tool-call actions
+- **User Coordination**: External platforms, account authentication, repository settings, deployment configuration, design approval, feedback checkpoints
+- **Mixed Requirements**: Separate agent vs user components in logical order
 
-"This task requires [specific agent actions vs user coordination]. The technical boundaries are [IDE environment capabilities vs external platform requirements]. Evidence for agent execution: [specific capabilities, available IDE tools]. Evidence for user coordination: [external platform dependencies, account access, manual configuration needs]."
+*State your assessment:* "This task requires [specific agent actions vs user coordination]. Evidence for agent execution: [specific IDE capabilities]. Evidence for user coordination: [external dependencies, account access needs]."
 
-**Classification Decision Guardrails**:
-- **Single-step criteria**: Cohesive non-complex work completable in one exchange, no internal sequential dependencies, no user validation points needed
-- **Multi-step criteria**: Internal "first this, then that" dependencies, user confirmation needs between steps, progressive validation/clarification requirements, complex implementation benefiting from checkpoints
-- **Edge case guidance**: External platform coordination = multi-step, research needs = multi-step with research ad-hoc delegation as first step, complex technical work with natural breakpoints = multi-step, simple but multiple related activities = single-step
+**Classification Decision:**
+Evaluate the workflow structure:
+- **Single-step criteria**: Cohesive work completable in one exchange, no internal dependencies, no validation points needed
+- **Multi-step criteria**: Internal sequential dependencies, user confirmation needs, progressive validation requirements, complex implementation with natural breakpoints
+- **Edge cases**: External platform coordination = multi-step, research needs = multi-step with ad-hoc delegation, complex technical work with breakpoints = multi-step
 
-"Task [X.Y] involves [detailed workflow description]. The workflow progression is [step-by-step analysis]. Based on [retained Context Synthesis insights, specific workflow factors - user confirmation needs, validation points, technical dependencies, natural breakpoints, specific user requirements], this requires [single/multi]-step execution because [specific reasoning for classification choice]."
+*State your reasoning:* "Task [X.Y] involves [workflow description]. Based on [Context Synthesis insights, workflow factors, validation needs, technical dependencies], this requires [single/multi]-step execution because [specific reasoning]."
 
-**Content Justification Guardrails**:
-- **Natural variation requirement**: Base count on actual complexity, not pattern matching previous tasks
-- **Single-step bullet guidelines**: up to 4 bullets based on instruction complexity and guidance needs
-- **Multi-step step guidelines**: up to 6 steps based on workflow dependencies and natural breakpoints  
-- **Quality over consistency**: Each task's content should match its individual complexity
+**Content Specification:**
+Determine appropriate task content:
+- **Natural variation**: Base count on actual complexity, not pattern matching
+- **Single-step guidelines**: Up to 4 bullets based on instruction complexity
+- **Multi-step guidelines**: Up to 6 steps based on workflow dependencies  
+- **Quality focus**: Content should match individual task complexity
 
-- **If Single-step**: "This needs [X] bullet points because [complexity analysis and instruction requirements]. Each bullet addresses [specific implementation guidance needs]. Bullet points are: [present bullet points in an unordered list]"
-- **If Multi-step**: "This needs [X] steps because [workflow dependency analysis]. Each step represents [natural workflow progression]. Steps are: [present steps in an ordered list]"
+*Justify your choice:*
+- **If Single-step**: "This needs [X] bullet points because [complexity analysis]. Each bullet addresses [implementation guidance needs]."
+- **If Multi-step**: "This needs [X] steps because [workflow dependency analysis]. Each step represents [natural progression]."
 
-**Content Definition**: [Provide actual bullets or steps with reasoning applied]
+**Content Definition:**
+[Present actual bullets or steps with applied reasoning]
 
-**Task Documentation**: State "Task [X.Y] analysis complete" before proceeding to next task.
+**Task [X.Y] analysis complete** ← State this before proceeding to next task
+```
 
 **Repeat this complete analysis for every task identified in 4.1.**
 
