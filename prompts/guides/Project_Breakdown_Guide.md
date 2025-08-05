@@ -291,6 +291,6 @@ Present **in chat** high-level plan statistics:
 - Reference detailed breakdown reasoning from previous chat exchanges (§2-§4)
 - Confirm that Context Synthesis insights, including process requirements and quality standards, are reflected in task specifications
 - Handle modification requests through targeted revisions to affected plan sections
-- Iterate until explicit User approval to proceed to Implementation Plan Review Guide
+- Iterate until explicit User approval to proceed to Project Breakdown Review Guide
 
 **End of Guide**

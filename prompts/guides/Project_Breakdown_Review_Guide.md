@@ -1,5 +1,5 @@
-# APM v0.4 - Implementation Plan Review Guide
-This guide defines how Setup Agents review the Implementation Plan to detect and fix critical task quality issues before enhancement. This guide uses phase-by-phase review cycles with enforced testing methodology and systematic fixing protocols.
+# APM v0.4 - Project Breakdown Review Guide
+This guide defines how Setup Agents review the initial Implementation Plan to detect and fix critical task quality issues before enhancement. This guide uses phase-by-phase review cycles with enforced testing methodology and systematic fixing protocols.
 
 ---
 

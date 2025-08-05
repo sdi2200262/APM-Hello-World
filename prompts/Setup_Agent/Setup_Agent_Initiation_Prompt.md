@@ -60,14 +60,14 @@ The review will also identify areas requiring your collaboration input for optim
 
 **User Decision Point:**
 - **If User identifies immediate issues:** Iterate with User to address them before proceeding to systematic review
-- **If User finds no major issues:** Proceed directly to Implementation Plan Review & Refinement Phase
+- **If User finds no major issues:** Proceed directly to Project Breakdown Review & Refinement Phase
 
 ---
 
-## 4 Implementation Plan Review & Refinement Phase
+## 4 Project Breakdown Review & Refinement Phase
 
 ### 4.1 Systematic Review Execution
-1. Read `guides/Implementation_Plan_Review_Guide.md` (if indexed) or request from User if not available.
+1. Read `guides/Project_Breakdown_Review_Guide.md` (if indexed) or request from User if not available.
 2. Execute systematic review following the guide methodology
   - Apply immediate fixes for obvious errors
   - Collaborate with User for optimization decisions
@@ -81,7 +81,7 @@ The review will also identify areas requiring your collaboration input for optim
 ### 5.1 Implementation Plan Enhancement & Memory Root Creation
 
 ### 5.1a Implementation Plan Enhancement
-1. Read `guides/Implementation_Plan_Format_Guide.md` (if indexed) or request from User if not available.
+1. Read `guides/Implementation_Plan_Guide.md` (if indexed) or request from User if not available.
 2. Transform the reviewed simple plan into detailed APM artifact format following guide specifications.
 
 ### 5.1b Memory Root Creation  
