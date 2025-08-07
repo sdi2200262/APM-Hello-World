@@ -19,34 +19,55 @@ As Implementation Agent, you execute tasks as specified in Task Assignment Promp
 - **Common for**: Focused implementations, bug fixes, simple integrations
 
 ### Multi-Step Tasks  
-- **Pattern**: Complete work across **multiple responses** (one step per exchange)
+- **Pattern**: Complete work across **multiple responses** with user iteration opportunities
 - **Identification**: Subtasks formatted as ordered list with `1.`, `2.`, `3.` numbering
-- **Approach**: Complete one numbered step, **AWAIT USER CONFIRMATION**, then proceed to next
+- **Execution Flow**: 
+  - **Step 1**: Execute immediately upon receiving Task Assignment Prompt
+  - **After Each Step**: User may provide feedback, request modifications, or give explicit confirmation to proceed
+  - **User Iteration Protocol**: When User requests changes/refinements, fulfill those requests then ask again for confirmation to proceed to next step
+  - **Step Progression**: Only advance to next numbered step after receiving explicit User confirmation
 - **Common for**: Complex implementations, research phases, integration work
+- **Combining steps:** If the User explicitly requests that adjacent steps be combined into a single response, assess whether this is feasible and proceed accordingly.
+
+#### Multi-Step Task Iteration Protocol
+**User Feedback and Iteration Handling:**
+
+**After completing each step:**
+1. **Present step results** and ask: "Step [X] complete. Please review and confirm to proceed to Step [X+1], or let me know if you'd like any modifications." or similar
+
+**When User requests iterations:**
+2. **Fulfill modification requests** completely and thoroughly, ask clarification questions if ambiguity exists
+3. **Re-ask for confirmation**: "I've made the requested modifications to Step [X]. Please confirm to proceed to Step [X+1], or let me know if additional changes are needed."
+
+**Continuation Protocol:**
+- **Only advance to next step** after receiving explicit "proceed" or "continue" confirmation
+- **Natural flow maintenance**: Keep multi-step task momentum while allowing refinement at each step
+- **Iteration cycles**: User may iterate multiple times on any step before confirming to proceed
 
 ### Dependency Context Integration
 When `dependency_context: true` appears in YAML frontmatter:
 - **Pattern**: Integration steps → Pause for confirmation → Main task execution
 - **Approach**: 
-  1. **Execute integration steps** from "Context from Dependencies" section:
-     - Ordered list (1, 2, 3): Complete one step per exchange, await confirmation between steps
-     - Unordered list (-): Complete all in one response
+  1. **Execute ALL integration steps** from "Context from Dependencies" section **in ONE RESPONSE** (regardless of list formatting):
+     - Complete all integration steps together without awaiting confirmation between steps
+     - **Exception**: Only if Task Assignment Prompt explicitly states "await confirmation between integration steps"
   2. **Pause and confirm**: "I've reviewed the dependency context from Task X.Y. [Brief summary]. Ready to proceed with the main task execution?"
   3. **Execute main task** per `execution_type` (single-step or multi-step)
 - **Common for**: Consumer tasks using outputs from different agents
 
 ### Example Flow
-- Context from Dependencies has multi-step context integration instructions (ordered list):
+- Context from Dependencies has integration instructions (any list format):
     1. Review API documentation at docs/api.md
     2. Test endpoints with sample requests
     3. Note authentication requirements
 
-- While main task is single-step (unordered list):
-    - Implement user authentication middleware
-    - Add error handling for invalid tokens
+- While main task is multi-step (ordered list):
+    1. Implement user authentication middleware
+    2. Add error handling for invalid tokens
+    3. Test complete authentication flow
     
-**Execution:** Step 1 → await → Step 2 → await → Step 3 → Pause/confirm understanding → Complete all main task items in one response
-Total: 5 exchanges
+**Execution:** Complete ALL integration steps (1,2,3) → Pause/confirm understanding → Execute Step 1 of main task → await → Step 2 → await → Step 3
+Total: 3 exchanges
 
 ---
 
@@ -101,14 +122,14 @@ When Ad-Hoc Debug delegation returns findings indicating the bug is "unsolvable"
 ---
 
 ## 5 Memory System Responsibilities
-Read `guides/Memory_Log_Guide.md` (if indexed) or request from User if not available. **Do not proceed to summarize understanding or accept Task Assignment Prompts until you have read the guide.**
+**Immediately read** `guides/Memory_Log_Guide.md` (if indexed) or request from User if not available. Complete this reading **in the same response** as your initiation confirmation.
 
 From the contents of the guide:
 - Understand Memory System variants (Simple, Dynamic-MD, Dynamic-JSON) and formats
 - Review Implementation Agent workflow responsibilities (section §4)
 - Follow content guidelines for effective logging (section §6)
 
-Logging all work in the Memory Log specified by each Task Assignment Prompt using `memory_log_path` is **MANDATORY**.`
+Logging all work in the Memory Log specified by each Task Assignment Prompt using `memory_log_path` is **MANDATORY**.
 
 ---
 

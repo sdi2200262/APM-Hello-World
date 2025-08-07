@@ -35,12 +35,22 @@ Conduct systematic review of simple Implementation Plan to identify and fix crit
 
 ## 2. Enforced Review Tests
 
-### 2.1. Task Packing Test
-**Enumeration Requirement**: For each task, explicitly list activities in chat
-- **List Activities**: What specific activities does this task accomplish? List each distinct activity in chat.
-- **Evaluate Independence**: Would each listed activity deliver independent value if completed separately, excluding sequential workflow dependencies within the same domain? State thinking in chat.
-- **Assess Integration Value**: Do activities share common deliverable, context, or workflow coherence? Would splitting create coordination overhead exceeding benefits?
-- **Decision**: If multiple truly independent activities exist AND splitting provides clear benefits over coordination costs → task is packed → identify split points and create separate tasks
+### 2.1. Task Scope Optimization Test
+**Enumeration Requirement**: For each task, explicitly assess scope appropriateness in chat
+- **List Activities/Components**: What specific activities and components does this task accomplish? List each distinct element in chat.
+- **Evaluate Packing**: Would each listed activity deliver independent value if completed separately, excluding sequential workflow dependencies within the same domain? State thinking in chat.
+- **Evaluate Granularity**: Could this task's scope be reasonably combined with adjacent/related tasks without losing focus or creating domain conflicts? State reasoning in chat.
+- **Assess Step Efficiency**: For multi-step tasks, could 2+ consecutive steps be naturally combined without losing logical flow or user validation benefits? State analysis in chat.
+- **Decision**: 
+  - **If multiple independent activities exist** → task is packed → identify split points and create separate tasks
+  - **If task is over-granular** → combine related tasks or consolidate steps for more efficient execution
+  - **If appropriately scoped** → no changes needed
+
+**Scope Issues to Identify:**
+- **Task Packing**: Multiple independent activities that should be separate tasks
+- **Over-Granular Tasks**: Small tasks that could be efficiently combined with related work
+- **Over-Granular Steps**: Multi-step consecutive steps that don't benefit from user confirmation breaks
+- **Artificial Separation**: Tasks separated without clear logical or practical justification
 
 ### 2.2. Classification Test
 **Enumeration Requirement**: For each task, explicitly list workflow steps in chat
@@ -86,11 +96,12 @@ Conduct systematic review of simple Implementation Plan to identify and fix crit
 
 **Task [X.Y]: [Task Name] - Review**
 
-1. **Task Packing Test Application**:
-   - List Activities: [enumerate all distinct activities]
-   - Independence Analysis: [evaluate each activity]
-   - Integration Value Assessment: [evaluate workflow coherence and coordination costs]
-   - Decision: [packed/properly scoped + reasoning including cost-benefit analysis]
+1. **Task Scope Optimization Test Application**:
+   - List Activities/Components: [enumerate all distinct activities and components]
+   - Packing Analysis: [evaluate each activity for independence]
+   - Granularity Analysis: [evaluate if task could be combined with others]
+   - Step Efficiency Analysis: [assess multi-step consolidation opportunities]
+   - Decision: [appropriately scoped/packed/over-granular + reasoning]
 
 2. **Classification Test Application**:
    - List Steps: [enumerate all workflow steps]
@@ -121,7 +132,7 @@ Conduct systematic review of simple Implementation Plan to identify and fix crit
 **For clear violations identified through testing, catalog for systematic application:**
 
 #### Critical Fix Categories
-- **Clear Task Packing Violations**: Tasks with multiple independent activities where splitting provides clear benefits over coordination costs
+- **Task Scope Violations**: Split packed tasks with multiple independent activities OR combine over-granular tasks/steps into more efficient execution units
 - **Obvious Classification Errors**: Tasks where user validation needs clearly don't match current format
 - **Genuine Template Matching Violations**: Pattern-driven formatting that doesn't reflect actual task complexity
 - **Missing User Requirements**: Emphasized requirements absent from task specifications
