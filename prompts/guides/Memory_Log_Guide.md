@@ -9,7 +9,7 @@ Both Manager and Implementation Agents must read this guide during session initi
 Summary of the three Memory System variants, their storage layouts and log formats:
 
 - Simple
-  - Storage: Inline sections in `Memory_Bank.md` at workspace root
+  - Storage: `Memory/` folder with inline sections in `Memory_Bank.md`
   - Format: Markdown, entries separated by `---`
   - Each section is a task log; summaries appended after logical groups as needed
 
@@ -104,8 +104,8 @@ Main responsibilities and workflow steps for Implementation Agents when working 
 ## 5. Manager Agent Workflow
 Main responsibilities and workflow steps for Manager Agents when maintaining the Memory System:
 
-1. **Create Empty Logs:** At the start of each phase, create **completely empty** log files for all phase tasks.  **DO NOT populate any content.** Implementation Agents will fill in the entire structure when executing tasks.
-2. **Attach to Assignments:** Include the appropriate empty log file path with each task assignment prompt sent to Implementation Agents.
+1. **Create Empty Logs:** At the start of each phase, create **completely empty** log files (or inline sections) for all phase tasks.  **DO NOT populate any content.** Implementation Agents will fill in the entire structure when executing tasks.
+2. **Attach to Assignments:** Include the appropriate empty log file path (or inline section) with each task assignment prompt sent to Implementation Agents.
 3. **Review Completed Logs:** When the User returns with a completed task, review the log content for:
   - Task completion status and quality
   - Any blockers or issues requiring attention
