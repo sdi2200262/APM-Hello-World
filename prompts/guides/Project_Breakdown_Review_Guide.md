@@ -138,53 +138,108 @@ Based on the Implementation Plan I just created, I recommend systematic review f
 
 ## 4. Systematic Analysis (Selected Areas Only)
 
-### 4.1. Full Testing Methodology
-**Apply comprehensive testing to selected tasks only:**
+### 4.1. Critical Review Methodology
+**Challenge previous decisions using analytical questioning to identify genuine improvements:**
 
-For each selected task, conduct systematic analysis:
+**CRITICAL**: The Setup Agent just created these tasks using specific reasoning. The systematic review must analytically challenge that reasoning to find genuine improvement opportunities, not simply confirm previous decisions.
+
+### 4.2. Analytical Testing Framework
+**For each selected task, apply structured analytical questioning:**
 
 **Task [X.Y]: [Task Name] - Systematic Review**
 
-1. **Task Scope Optimization Test**:
-   - List distinct activities and evaluate independence
-   - Assess granularity and combination opportunities
-   - Evaluate step efficiency for multi-step tasks
+**Scope Analysis:**
+- **Current Decision**: "For this task, I chose to [scope decision]. Why is this not [alternative scope approach]?"
+- **Complexity Assessment**: "This task has [X] steps/components. Can I break it into 2 or more focused tasks? What would be the benefits/drawbacks?"
+- **Domain Evaluation**: "I assigned this to [Agent]. Would [Alternative Agent] be better suited? What specific domain knowledge does this require?"
 
-2. **Classification Test**:
-   - List workflow steps and validation needs
-   - Assess workflow efficiency vs interruption costs
+**Classification Analysis:**
+- **Current Format**: "I chose [single-step/multi-step] format. What specific factors support/challenge this classification?"
+- **Validation Points**: "Does this task need user confirmation points? Where could an Implementation Agent get stuck without guidance?"
+- **Workflow Efficiency**: "Would this be more efficient as [alternative classification]? What validation is truly necessary?"
 
-3. **Template Matching Test**:
-   - Compare formatting to other tasks
-   - Evaluate complexity-formatting alignment
+**Implementation Feasibility:**
+- **Agent Capability**: "What specific assumptions am I making about Implementation Agent capabilities? Which assumptions might be incorrect?"
+- **Context Requirements**: "If an Implementation Agent receives this task with minimal context, what would they need clarified?"
+- **Execution Challenges**: "What are the most likely points of failure during task execution? How can the task specification address these?"
 
-4. **User Requirements Test**:
-   - Identify applicable Context Synthesis requirements
-   - Check integration into task specifications
+**Requirement Integration:**
+- **Context Synthesis Alignment**: "Which Context Synthesis requirements apply to this task? Are they explicitly integrated or assumed?"
+- **User Coordination**: "What external actions does this task require? Are user coordination steps clearly specified?"
+- **Output Clarity**: "Are the task outputs specific enough for the next Implementation Agent to integrate? What could be ambiguous?"
 
-5. **Execution Scope Test**:
-   - Identify external dependencies and coordination needs
-   - Categorize agent vs user capabilities
+**Alternative Approaches:**
+- **Different Organization**: "Could this work be structured as [alternative approach]? What would be the advantages?"
+- **Dependency Optimization**: "Are the dependencies for this task optimal? Could reorganization reduce coordination overhead?"
 
-**Decision:** [Issue found/No issues] + brief reasoning
-**Fix Applied:** [Specific changes made if issues found]
+### 4.3. Systematic Analysis Execution
+**Apply analytical framework to each selected task:**
 
-### 4.2. Issue Documentation
-**Track all issues found in selected areas:**
+**Task [X.Y]: [Task Name] - Analysis Results**
+
+1. **Scope Analysis Results**:
+   - Alternative Scope Consideration: [Analysis and decision]
+   - Task Splitting Assessment: [Benefits/drawbacks evaluated, decision with reasoning]
+   - Agent Assignment Review: [Domain fit analysis and confirmation/change]
+
+2. **Classification Analysis Results**:
+   - Format Justification: [Factors supporting current classification or change needed]
+   - Validation Point Assessment: [User confirmation needs analyzed]
+   - Efficiency Evaluation: [Workflow optimization opportunities identified/confirmed]
+
+3. **Implementation Feasibility Results**:
+   - Capability Assumptions Review: [Assumptions validated or corrections identified]
+   - Context Requirements Analysis: [Clarifications needed or sufficiency confirmed]
+   - Failure Point Mitigation: [Potential issues identified and addressed]
+
+4. **Requirement Integration Results**:
+   - Context Synthesis Integration: [Requirements explicitly added or integration confirmed]
+   - User Coordination Clarity: [External action steps clarified or confirmed]
+   - Output Specification Review: [Ambiguities resolved or clarity confirmed]
+
+5. **Alternative Approach Results**:
+   - Structural Alternatives: [Alternative approaches considered, current justified or changed]
+   - Dependency Optimization: [Coordination improvements identified or current confirmed]
+
+**Overall Assessment**: [Improvements implemented / Current approach validated with specific reasoning]
+
+### 4.4. Quality Enhancement Requirements
+**Ensure constructive challenge of previous decisions:**
+
+**Analytical Standards:**
+- Each selected task must be examined from multiple analytical perspectives based on §4.2 and §4.3
+- Current decisions must be explicitly justified when maintained
+- Alternative approaches must be genuinely considered, not dismissed
+
+**Evidence-Based Analysis:**
+- "I initially chose approach X based on reasoning Y. Upon review, consideration Z suggests improvement A"
+- "While the current structure appears sound, implementation feasibility analysis reveals optimization opportunity B"
+- "Task specification review confirms adequacy but identifies enhancement C for Implementation Agent clarity"
+- "Current choices are correct because of factors X, Y, and Z; analysis of alternatives indicates that no other approach would provide additional benefit in this context"
+
+**Constructive Challenge Process:**
+- Question each significant decision made during initial task creation
+- Consider Implementation Agent perspective throughout analysis
+- Identify specific improvement opportunities rather than general critique
+- Maintain focus on task execution success and clarity
+
+### 4.5. Issue Documentation
+**Track all improvements identified in selected areas:**
 
 **Documentation Format:**
 ```markdown
-**Issues Found in Selected Areas:**
-- [Task ID]: [Issue type] ([resolution applied])
-- [Task ID]: [Issue type] ([resolution applied])
-- [Task Range]: [Pattern issue] ([pattern fix applied])
+**Improvements Identified in Selected Areas:**
+- [Task ID]: [Improvement type] ([enhancement applied])
+- [Task ID]: [Optimization identified] ([modification made])
+- [Task Range]: [Pattern improvement] ([systematic enhancement applied])
 ```
 
 **Documentation Requirements:**
-- List each task with issues found during systematic review
-- Specify issue type (packing violation, classification error, missing requirements, etc.)
-- Document specific resolution applied
-- Group similar issues for clarity
+- List each task with improvements identified during systematic review
+- Specify improvement type (scope optimization, classification refinement, requirement integration, etc.)
+- Document specific enhancement applied
+- Group similar improvements for clarity
+- Note tasks where current approach was validated through analysis
 
 ---
 

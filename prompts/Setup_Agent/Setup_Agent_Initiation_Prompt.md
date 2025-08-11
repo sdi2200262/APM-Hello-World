@@ -55,11 +55,11 @@ Ask the following, in order:
 - Agent assignment errors
 - Classification mistakes
 
-The review will also identify areas requiring your collaboration input for optimization decisions. Please look for any major structural issues, missing requirements, or workflow problems that the systematic review might miss. After your manual review of the Plan, should I proceed to the systematic review or skip it and enter Enhancement & Memory Root Creation"
+The review will also identify areas requiring your collaboration input for optimization decisions. Please look for any major structural issues, missing requirements, or workflow problems that the systematic review might miss. After your manual review, I will ask you to choose whether to proceed with systematic review or skip to Enhancement & Memory Root Creation."
 
 **User Decision Point:**
 1. **Handle Immediate Issues:** If User identifies issues, iterate with User to address them until explicit confirmation that all issues are resolved
-2. **Get Systematic Review Choice:** Once immediate issues are resolved (or if no issues identified), ask User to choose:
+2. **ALWAYS Present Systematic Review Choice:** After any manual modifications are complete (or if no issues were identified), ask User to choose:
    - **Skip Systematic Review** and continue to Enhancement phase to save tokens, or
    - **Proceed to Systematic Review** by reading the guide and initiating the procedure following the guidelines
 3. **Proceed Based on Choice:** Continue to chosen next phase

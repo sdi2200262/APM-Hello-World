@@ -1,6 +1,6 @@
 # APM Landing Page - Implementation PRD
 
-**Document Version:** 1.1  
+**Document Version:** 1.2  
 **Created:** August 2025  
 **Updated:** August 2025  
 **Purpose:** Technical specification for building a modern landing page and documentation platform demonstrating systematic development coordination capabilities
@@ -109,6 +109,58 @@ website/public/
 - **Static Build Time**: Contributor data fetched during build process
 - **Dynamic Updates**: GitHub Actions workflow updates contributor data
 - **Client-side Rendering**: Fast interactive experience with pre-built data
+
+## Component Development Methodology
+
+### **Systematic 5-Stage Component Creation Process**
+
+Each component follows a structured development approach ensuring consistency, maintainability, and Design PRD compliance:
+
+#### **Stage 1: Base Component Foundation**
+- Read Design PRD for specifications on foundational structure and requirements.
+- Create minimal functional component with Shadcn UI base or standard React structure
+- Implement core state management and props interface
+- Establish TypeScript interfaces and type definitions
+- Set up basic event handlers and component logic
+- Verify component renders without errors in development environment
+- Test basic functionality and interactivity
+
+#### **Stage 2: Visual Structure Alignment**
+- Read Design PRD for specifications on dimensions, positioning, spacing, and color palette.
+- Apply Design PRD specifications for dimensions, positioning, and spacing
+- Implement border radius consistency (20px for floating cards and header)
+- Set background colors per Design PRD palette (#000000, #181818, #AE9F8A, #A6A6A6)
+- Configure responsive breakpoints (mobile, md, lg, xl)
+- Apply floating card width calculations (w-[calc(100%-30%)], etc.)
+- Ensure proper z-index layering and positioning contexts
+
+#### **Stage 3: Internal Layout Architecture**
+- Read Design PRD for specifications on layout, grid systems, and content flow.
+- Build content containers, grids, and flex layouts per Design PRD
+- Implement responsive grid systems (e.g., `grid-cols-1 lg:grid-cols-2`)
+- Create carousel containers, tab systems, or navigation structures
+- Establish proper content flow and visual hierarchy
+- Set up asymmetric layouts where specified (Features section 35%/65% split)
+- Configure overflow handling and scroll behaviors
+
+#### **Stage 4: Content Population**
+- Read Design PRD for specifications on typography, imagery, and data integration.
+- Add text content with proper typography (Inter/Instrumental Sans fonts)
+- Integrate SVG graphics and images with proper sizing and quality settings
+- Implement dynamic data binding for interactive elements
+- Add placeholder content for development testing
+- Connect to data sources (JSON, API responses)
+- Ensure content accessibility with proper alt text and ARIA labels
+
+#### **Stage 5: Polish & Effects**
+- Read Design PRD for specifications on animation, effects, and interaction standards.
+- Implement animations (1.5s fade-ins with 0.3s delay for SVGs)
+- Add glassmorphism effects (backdrop-blur, white/opacity borders)
+- Apply Apple Watch-style hover interactions (scale-105 with slow return)
+- Implement transition timings (300ms for hovers, 500ms for carousels)
+- Add drop shadows for text readability on colored backgrounds
+- Optimize performance and test cross-browser compatibility
+- Ensure smooth 60fps animations and interactions
 
 ## Design Implementation Specifications
 
@@ -593,102 +645,776 @@ This project demonstrates coordinated development capabilities through:
 - Implement Shadcn UI component customization strategy for Design PRD compliance
 
 ### **Stage 3: Navigation Header Development**
-#### **3.1 Header Component Creation**
-- Review Design PRD for Header component design, invisible outline effect, and scroll integration
-- Request needed assets from User (GitHub Octocat icon) as defined in Design PRD
-- Implement Header component following Design PRD specifications with 20px border radius
+
+#### **3.1 Header Component Creation (5-Phase Implementation)**
+
+**Phase 1 - Base Component Foundation:**
+- Create `NavigationHeader.tsx` with basic functional structure
+- Implement navigation item array and basic logo text
+- Set up TypeScript interfaces for props and navigation items
+- Verify component renders and basic click handlers work
+
+**Phase 2 - Visual Structure Alignment:**
+```tsx
+// Apply Design PRD positioning, dimensions, and colors
+<header className="fixed top-0 left-0 right-0 z-50 bg-black rounded-[20px]">
+  <nav className="px-8 py-4">
+    {/* Apply exact spacing and positioning */}
+  </nav>
+</header>
+```
+
+**Phase 3 - Internal Layout Architecture:**
+```tsx
+// Build flex layout with proper content distribution
+<nav className="flex items-center justify-between max-w-7xl mx-auto">
+  <div className="text-white font-bold font-['Inter'] text-lg">APM v0.4</div>
+  <div className="flex items-center space-x-8">
+    {/* Navigation items with proper spacing */}
+  </div>
+</nav>
+```
+
+**Phase 4 - Content Population:**
+- Add all navigation button texts (About, Features, Contributors, Documentation)
+- Integrate GitHub Octocat SVG icon (request asset from user)
+- Implement onClick handlers for scroll-to-section functionality
+- Add proper TypeScript types for all interactive elements
+
+**Phase 5 - Polish & Effects:**
+```tsx
+// Apply hover effects and transition animations
+<button className="text-white font-['Inter'] px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/10 hover:backdrop-blur-sm">
+  About
+</button>
+```
 
 #### **3.2 Header Functionality Implementation**
-- Review Design PRD for Header behavior, scroll mechanics, and navigation interactions
-- Implement fixed positioning, scroll behavior, and navigation linking per Design PRD
-- Refine implementation based on User feedback and guidance
+- Implement scroll event listeners for invisible outline effect
+- Create smooth scroll-to-section navigation functions
+- Add carousel slide trigger for About button
+- Test fixed positioning during scroll with void background integration
 
 ### **Stage 4: Hero Section Development**
-#### **4.1 Hero Section Implementation**
-- Review Design PRD for Hero Section design, carousel mechanics, and Instrumental Sans typography
-- Request needed assets from User (hero network diagram SVG) as defined in Design PRD
-- Implement Hero Section following Design PRD specifications with internal carousel functionality
 
-#### **4.2 Hero Section Animation & Interaction**
-- Implement SVG fade-in animations with 0.3s delay as specified in Design PRD
-- Create carousel navigation with Apple Watch-style chunky arrows and outline hover effects
-- Integrate About button functionality for carousel slide navigation
+#### **4.1 Hero Section Component Creation (5-Phase Implementation)**
+
+**Phase 1 - Base Component Foundation:**
+```tsx
+// Create HeroSection.tsx with carousel state management
+export const HeroSection = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  
+  return (
+    <section>
+      <div className="carousel-container">
+        <div className="carousel-slides">
+          <div>Slide 1: Hero Content</div>
+          <div>Slide 2: About Content</div>
+        </div>
+      </div>
+      <button onClick={() => setCurrentSlide(0)}>Previous</button>
+      <button onClick={() => setCurrentSlide(1)}>Next</button>
+    </section>
+  );
+};
+```
+
+**Phase 2 - Visual Structure Alignment:**
+```tsx
+// Apply floating card design with responsive margins
+<section className="bg-[#181818] rounded-[20px] p-12 my-16 mx-auto max-w-7xl w-[calc(100%-30%)] md:w-[calc(100%-20%)] sm:w-[calc(100%-10%)]">
+  {/* Card maintains floating effect across all devices */}
+</section>
+```
+
+**Phase 3 - Internal Layout Architecture:**
+```tsx
+// Create two-column responsive grid
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+  <div className="text-content">
+    {/* Text column structure */}
+  </div>
+  <div className="graphic-container">
+    {/* SVG column structure */}
+  </div>
+</div>
+```
+
+**Phase 4 - Content Population:**
+```tsx
+// Add Instrumental Sans typography and content
+<h1 className="text-4xl lg:text-5xl font-bold font-['Instrumental_Sans'] text-[#A6A6A6] mb-4">
+  Agentic Project Management
+</h1>
+<p className="text-lg font-['Instrumental_Sans'] text-[#A6A6A6]">
+  Manage complex projects with a team of AI assistants, smoothly and efficiently.
+</p>
+<img src="/hero-network-diagram.svg" alt="APM Network" className="w-full h-auto" />
+```
+
+**Phase 5 - Polish & Effects:**
+```tsx
+// Implement animations and carousel transitions
+<img src="/hero-network-diagram.svg" 
+     className="w-full h-auto opacity-0 animate-fade-in-delayed"
+     style="animation: fade-in-delayed 1.5s ease-out forwards; animation-delay: 300ms;" />
+
+// Carousel slide transition
+<div className="carousel-slides flex transition-transform duration-500 ease-in-out"
+     style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+```
+
+#### **4.2 Carousel Navigation Implementation**
+- Create chunky arrow components with outline styling (#A6A6A6 color)
+- Implement conditional navigation (disable at boundaries)
+- Add keyboard navigation support (arrow keys)
+- Connect to header About button for external trigger
 
 ### **Stage 5: Features Section Development**
-#### **5.1 Features Section Implementation**
-- Review Design PRD for Features Section design, asymmetric layout, and pill tab navigation
-- Request needed assets from User (IDE icons, feature diagrams, chat screenshot) as defined in Design PRD
-- Implement Features Section following Design PRD specifications with warm beige background
+
+#### **5.1 Features Section Component Creation (5-Phase Implementation)**
+
+**Phase 1 - Base Component Foundation:**
+```tsx
+// Create FeaturesSection.tsx with tab state
+export const FeaturesSection = () => {
+  const [activeTab, setActiveTab] = useState('multi-agent');
+  
+  const tabs = [
+    { id: 'multi-agent', label: 'Multi-Agent Orchestration' },
+    { id: 'implementation', label: 'Implementation Plan' },
+    { id: 'memory', label: 'Dynamic Memory Bank' },
+    { id: 'handover', label: 'Handover Procedure' }
+  ];
+  
+  return (
+    <section>
+      <div className="top-section">{/* IDE Integration */}</div>
+      <div className="bottom-section">
+        {tabs.map(tab => (
+          <button key={tab.id} onClick={() => setActiveTab(tab.id)}>
+            {tab.label}
+          </button>
+        ))}
+        <div>{/* Tab content */}</div>
+      </div>
+    </section>
+  );
+};
+```
+
+**Phase 2 - Visual Structure Alignment:**
+```tsx
+// Apply warm beige background and floating card
+<section className="bg-[#AE9F8A] rounded-[20px] p-12 my-16 mx-auto max-w-7xl w-[calc(100%-30%)] md:w-[calc(100%-20%)] sm:w-[calc(100%-10%)]">
+  {/* Maintain floating card consistency */}
+</section>
+```
+
+**Phase 3 - Internal Layout Architecture:**
+```tsx
+// Create asymmetric layout (35%/65% split)
+<div className="space-y-16">
+  <div className="top-section"> {/* ~35% of card height */}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div>{/* IDE content left */}</div>
+      <div>{/* Screenshot right */}</div>
+    </div>
+  </div>
+  
+  <div className="bottom-section"> {/* ~65% of card height */}
+    <h2 className="text-center mb-8">{/* Section header */}</h2>
+    <div className="pill-nav">{/* Tab navigation */}</div>
+    <div className="feature-content">{/* Tab content */}</div>
+  </div>
+</div>
+```
+
+**Phase 4 - Content Population:**
+```tsx
+// Add IDE integration content
+<h2 className="text-3xl font-bold font-['Inter'] text-white">
+  Integrates Seamlessly with Your Favorite AI IDEs
+</h2>
+<p className="text-lg font-['Inter'] text-white">
+  APM functions directly where your code lives...
+</p>
+
+// Add IDE icons
+<div className="flex space-x-6">
+  <img src="/icons/windsurf-icon.svg" alt="Windsurf" className="w-12 h-12" />
+  <img src="/icons/cursor-icon.svg" alt="Cursor" className="w-12 h-12" />
+  <img src="/icons/vscode-icon.svg" alt="VS Code" className="w-12 h-12" />
+</div>
+
+// Add feature content for each tab
+{activeTab === 'multi-agent' && (
+  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <p className="text-white">APM uses a central orchestrator...</p>
+    <img src="/graphics/multi-agent-diagram.svg" alt="Multi-Agent" />
+  </div>
+)}
+```
+
+**Phase 5 - Polish & Effects:**
+```tsx
+// Implement pill tab "hole effect"
+<div className="bg-black rounded-full p-2 inline-flex">
+  {tabs.map(tab => (
+    <button 
+      className={`px-6 py-3 rounded-full transition-all duration-300 ${
+        activeTab === tab.id 
+          ? 'bg-[#AE9F8A] text-black' // Hole effect
+          : 'text-white hover:bg-white/10'
+      }`}
+    >
+      {tab.label}
+    </button>
+  ))}
+</div>
+
+// Add drop shadows to text
+<p className="text-white drop-shadow-md">
+  {/* White text with shadow for readability */}
+</p>
+
+// SVG fade-in animations
+<img className="opacity-0 animate-fade-in-delayed" />
+```
 
 #### **5.2 Features Section Interactivity**
-- Implement pill tab navigation with "hole effect" active state showing section background
-- Create feature slide transitions with consistent carousel mechanics
-- Integrate SVG graphics with fade-in animations matching Hero section timing
+- Implement smooth tab content transitions
+- Add keyboard navigation for tab selection
+- Create responsive behavior for pill navigation wrapping
+- Test asymmetric layout on different screen sizes
 
 ### **Stage 6: Contributors Section Development**
-#### **6.1 Contributors Section Implementation**
-- Review Design PRD for Contributors Section requirements with individual glass cards
-- Implement glassmorphism effects with backdrop blur and white/opacity borders on black void
-- Create responsive grid layout matching Hero/Features card widths
 
-#### **6.2 Contributors Section Interactions**
-- Implement Apple Watch-style hover effects with scale animation and slow return
-- Create GitHub profile linking functionality for each contributor card
-- Test glass card visual effects and interaction responsiveness
+#### **6.1 Contributors Grid Creation (5-Phase Implementation)**
 
-### **Stage 7: GitHub Integration & Automation**
-#### **7.1 GitHub Actions Workflow Development**
-- Research GitHub Actions best practices for contributor data fetching
-- Design workflow for automated data retrieval from main APM repository
-- Implement GitHub Actions workflow with error handling and scheduling
+**Phase 1 - Base Component Foundation:**
+```tsx
+// Create ContributorsSection.tsx with data structure
+export const ContributorsSection = () => {
+  const [contributors, setContributors] = useState([]);
+  
+  useEffect(() => {
+    // Load contributor data from JSON
+    fetch('/data/contributors.json')
+      .then(res => res.json())
+      .then(data => setContributors(data));
+  }, []);
+  
+  return (
+    <section className="py-16">
+      <h2>Contributors</h2>
+      <div className="contributors-grid">
+        {contributors.map(contributor => (
+          <div key={contributor.username}>
+            {/* Card structure */}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+```
 
-#### **7.2 Data Processing & Storage Implementation**
-- Implement GitHub API integration for contributor data fetching
-- Create JSON data structure for contributor information storage
-- Set up automated update mechanism with User configuration guidance
+**Phase 2 - Visual Structure Alignment:**
+```tsx
+// Apply void background and section width
+<section className="py-16 bg-black">
+  <div className="max-w-7xl mx-auto w-[calc(100%-30%)] md:w-[calc(100%-20%)] sm:w-[calc(100%-10%)]">
+    {/* Match width of floating cards above */}
+  </div>
+</section>
+```
+
+**Phase 3 - Internal Layout Architecture:**
+```tsx
+// Create responsive grid system
+<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+  {contributors.map(contributor => (
+    <a href={`https://github.com/${contributor.username}`} 
+       target="_blank" 
+       rel="noopener noreferrer"
+       className="contributor-card group cursor-pointer">
+      <div className="p-6">
+        <div className="avatar-container mb-4 flex justify-center">
+          {/* Avatar */}
+        </div>
+        <div className="text-center">
+          {/* Username and stats */}
+        </div>
+      </div>
+    </a>
+  ))}
+</div>
+```
+
+**Phase 4 - Content Population:**
+```tsx
+// Add GitHub avatar and user data
+<img src={`https://github.com/${contributor.username}.png`} 
+     alt={contributor.username}
+     className="w-16 h-16 rounded-full" />
+
+<h3 className="text-white font-['Inter'] font-semibold text-lg">
+  {contributor.username}
+</h3>
+
+<p className="text-white/80 font-['Inter'] text-sm">
+  <span className="font-bold">{contributor.commits}</span> commits
+</p>
+```
+
+**Phase 5 - Polish & Effects:**
+```tsx
+// Apply glassmorphism and Apple Watch hover
+<div className="glass-card bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 
+                transition-all duration-300 ease-out 
+                hover:scale-105 hover:bg-white/15">
+  
+  {/* Enhanced avatar border on hover */}
+  <img className="w-16 h-16 rounded-full border-2 border-white/30 
+                  group-hover:border-white/50 transition-colors duration-300" />
+  
+  {/* Content with proper opacity hierarchy */}
+  <h3 className="text-white">{/* Full opacity for primary info */}</h3>
+  <p className="text-white/80">{/* Reduced opacity for secondary info */}</p>
+</div>
+```
+
+#### **6.2 Glass Card Refinement**
+- Test glassmorphism effects across browsers
+- Ensure backdrop-filter support with fallbacks
+- Validate Apple Watch-style scale animation smoothness
+- Test touch interactions on mobile devices
+
+### **Stage 7: GitHub Integration & Automation (Comprehensive Guide)**
+
+#### **7.1 GitHub Actions Fundamentals for Beginners**
+
+**What is GitHub Actions?**
+GitHub Actions is a CI/CD (Continuous Integration/Continuous Deployment) platform that allows you to automate tasks directly in your GitHub repository. Think of it as a robot that can perform tasks for you whenever certain events happen in your repository.
+
+**Key Concepts Explained:**
+- **Workflow**: A set of automated tasks defined in a YAML file (like a recipe)
+- **Job**: A group of steps that run on the same virtual computer
+- **Step**: A single task within a job (like "install dependencies" or "run tests")
+- **Action**: A reusable piece of code that performs a specific task
+- **Event**: Something that triggers a workflow (push, pull request, schedule, etc.)
+- **Runner**: The virtual computer that executes your jobs
+
+**Basic Workflow Structure:**
+```yaml
+name: My Workflow Name              # What you'll see in GitHub UI
+on:                                 # When this workflow should run
+  push:                            # Run when code is pushed
+    branches: [main]               # Only for the main branch
+  workflow_dispatch:               # Allow manual trigger from GitHub UI
+
+jobs:                              # The tasks to perform
+  my-job-name:                     # Name of your job
+    runs-on: ubuntu-latest         # Use latest Ubuntu virtual machine
+    steps:                         # Individual tasks in order
+      - name: Check out code       # Human-readable step name
+        uses: actions/checkout@v3  # Use pre-built checkout action
+      
+      - name: Run a command        # Another step
+        run: echo "Hello World"    # Shell command to execute
+```
+
+#### **7.2 Complete Contributor Data Fetching Implementation**
+
+**Step 1: Create the Workflow File**
+Create `.github/workflows/update-contributors.yml`:
+
+```yaml
+name: Update Contributors Data
+
+# When to run this workflow
+on:
+  # Run every day at 2 AM UTC
+  schedule:
+    - cron: '0 2 * * *'
+  
+  # Run when pushing to main branch
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-contributors.yml'
+  
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+# Environment variables available to all jobs
+env:
+  REPO_OWNER: agentic-project-management
+  REPO_NAME: apm
+
+jobs:
+  fetch-contributors:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write  # Allow writing to repository
+    
+    steps:
+      # Step 1: Check out your repository code
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      # Step 2: Set up Node.js environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      
+      # Step 3: Create directory for data
+      - name: Create Data Directory
+        run: |
+          mkdir -p website/public/data
+      
+      # Step 4: Fetch contributor data
+      - name: Fetch Contributors from GitHub API
+        run: |
+          # Create a Node.js script to fetch data
+          cat > fetch-contributors.js << 'EOF'
+          const fs = require('fs');
+          const https = require('https');
+          
+          // Configuration
+          const REPO_OWNER = process.env.REPO_OWNER;
+          const REPO_NAME = process.env.REPO_NAME;
+          const OUTPUT_FILE = 'website/public/data/contributors.json';
+          
+          // GitHub API request options
+          const options = {
+            hostname: 'api.github.com',
+            path: `/repos/${REPO_OWNER}/${REPO_NAME}/contributors`,
+            headers: {
+              'User-Agent': 'APM-Landing-Page-Bot',
+              'Accept': 'application/vnd.github.v3+json'
+            }
+          };
+          
+          console.log(`Fetching contributors for ${REPO_OWNER}/${REPO_NAME}...`);
+          
+          // Make API request
+          https.get(options, (res) => {
+            let data = '';
+            
+            res.on('data', (chunk) => {
+              data += chunk;
+            });
+            
+            res.on('end', () => {
+              try {
+                const contributors = JSON.parse(data);
+                
+                // Check if we got an error response
+                if (contributors.message) {
+                  console.error('GitHub API Error:', contributors.message);
+                  process.exit(1);
+                }
+                
+                // Process contributor data
+                const processedData = contributors
+                  .filter(c => c.type === 'User') // Only real users, not bots
+                  .map(contributor => ({
+                    username: contributor.login,
+                    avatar_url: contributor.avatar_url,
+                    profile_url: contributor.html_url,
+                    commits: contributor.contributions
+                  }))
+                  .sort((a, b) => b.commits - a.commits); // Sort by commits
+                
+                // Save to file
+                fs.writeFileSync(OUTPUT_FILE, JSON.stringify(processedData, null, 2));
+                console.log(`Successfully saved ${processedData.length} contributors to ${OUTPUT_FILE}`);
+                
+                // Display summary
+                console.log('\nTop 5 Contributors:');
+                processedData.slice(0, 5).forEach((c, i) => {
+                  console.log(`${i + 1}. ${c.username}: ${c.commits} commits`);
+                });
+              } catch (error) {
+                console.error('Error processing data:', error);
+                process.exit(1);
+              }
+            });
+          }).on('error', (err) => {
+            console.error('Request failed:', err);
+            process.exit(1);
+          });
+          EOF
+          
+          # Run the script
+          node fetch-contributors.js
+      
+      # Step 5: Verify the data file was created
+      - name: Verify Data File
+        run: |
+          if [ -f "website/public/data/contributors.json" ]; then
+            echo "✅ Contributors file created successfully"
+            echo "File contents preview:"
+            head -20 website/public/data/contributors.json
+          else
+            echo "❌ Contributors file was not created"
+            exit 1
+          fi
+      
+      # Step 6: Commit and push changes
+      - name: Commit Updated Data
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          
+          # Check if there are changes
+          if git diff --quiet website/public/data/contributors.json; then
+            echo "No changes to contributors data"
+          else
+            git add website/public/data/contributors.json
+            git commit -m "🤖 Update contributors data [skip ci]"
+            git push
+            echo "✅ Changes pushed to repository"
+          fi
+```
+
+**Step 2: Understanding the Workflow**
+
+This workflow does the following:
+1. **Triggers**: Runs daily at 2 AM, on pushes to main, or manually
+2. **Checkout**: Gets your repository code
+3. **Setup**: Prepares Node.js environment
+4. **Fetch**: Calls GitHub API to get contributor data
+5. **Process**: Formats and sorts the data
+6. **Save**: Writes to `contributors.json`
+7. **Commit**: Pushes changes back to repository
+
+**Step 3: Testing Your Workflow**
+
+1. **Manual Trigger Test:**
+   - Go to your repository on GitHub
+   - Click "Actions" tab
+   - Select "Update Contributors Data" workflow
+   - Click "Run workflow" button
+   - Select branch and click green "Run workflow" button
+
+2. **Monitor Execution:**
+   - Click on the running workflow to see live logs
+   - Each step will show ✓ when complete or ✗ if failed
+   - Click on any step to see detailed output
+
+3. **Debugging Common Issues:**
+
+```yaml
+# Add debug output to any step
+- name: Debug Information
+  run: |
+    echo "Current directory: $(pwd)"
+    echo "Files in directory:"
+    ls -la
+    echo "GitHub Token available: ${{ secrets.GITHUB_TOKEN != '' }}"
+```
+
+#### **7.3 Deployment Workflow**
+
+**Create `.github/workflows/deploy.yml`:**
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  # Deploy when contributors data is updated
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - '.github/workflows/deploy.yml'
+  
+  # Allow manual deployment
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: website/package-lock.json
+      
+      # Step 3: Install dependencies
+      - name: Install Dependencies
+        working-directory: website
+        run: |
+          echo "📦 Installing dependencies..."
+          npm ci  # ci is faster than install for automated environments
+      
+      # Step 4: Build the application
+      - name: Build Application
+        working-directory: website
+        run: |
+          echo "🔨 Building application..."
+          npm run build
+          echo "✅ Build complete"
+      
+      # Step 5: Setup GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+      
+      # Step 6: Upload build artifacts
+      - name: Upload Artifacts
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: website/dist
+      
+      # Step 7: Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+        
+      # Step 8: Output deployment URL
+      - name: Display Deployment URL
+        run: |
+          echo "🚀 Deployment complete!"
+          echo "🌐 Your site is live at: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/"
+```
+
+#### **7.4 Troubleshooting Guide for GitHub Actions**
+
+**Common Issues and Solutions:**
+
+1. **Permission Denied Errors:**
+```yaml
+# Add permissions to your job
+jobs:
+  my-job:
+    permissions:
+      contents: write  # To push changes
+      pages: write     # To deploy to Pages
+```
+
+2. **Secrets Not Working:**
+- `${{ secrets.GITHUB_TOKEN }}` is automatically available
+- Custom secrets: Settings → Secrets → Actions → New repository secret
+
+3. **Workflow Not Triggering:**
+- Check workflow file is in `.github/workflows/` directory
+- Verify YAML syntax (use online YAML validator)
+- Check branch names match your repository
+
+4. **API Rate Limiting:**
+```yaml
+# Add rate limit handling
+- name: Check API Rate Limit
+  run: |
+    curl -H "Accept: application/vnd.github.v3+json" \
+         https://api.github.com/rate_limit
+```
+
+5. **Debugging Variables:**
+```yaml
+# Print all environment variables (careful with secrets!)
+- name: Debug Environment
+  run: |
+    echo "Repository: ${{ github.repository }}"
+    echo "Branch: ${{ github.ref }}"
+    echo "Event: ${{ github.event_name }}"
+```
+
+**Best Practices for Beginners:**
+
+1. **Start Simple**: Test with basic echo commands first
+2. **Use Pre-built Actions**: Search GitHub Marketplace for existing solutions
+3. **Version Your Actions**: Use specific versions (`@v3`) not `@latest`
+4. **Add Status Badges**: Show workflow status in README
+```markdown
+![Build Status](https://github.com/USERNAME/REPO/actions/workflows/deploy.yml/badge.svg)
+```
+
+5. **Limit Trigger Conditions**: Avoid unnecessary runs
+```yaml
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'  # Don't run for markdown changes
+      - 'docs/**'  # Don't run for documentation
+```
 
 ### **Stage 8: Data Integration & Dynamic Content**
+
 #### **8.1 JSON Dataset Integration**
-- Connect JSON contributor data to frontend components
-- Implement data access patterns and error handling
-- Test complete data flow from storage to glass card display
+- Create React hook for loading contributor data
+- Implement error boundaries for data loading failures
+- Add loading states with skeleton components
+- Cache data in sessionStorage for performance
 
 #### **8.2 Contributors Data Binding**
-- Connect Contributors Section to JSON data source with glassmorphism styling
-- Implement dynamic rendering and loading states
-- Validate data display accuracy with User feedback
+- Connect Contributors Section to JSON data source
+- Implement fallback UI for missing data
+- Add refresh mechanism for manual data updates
+- Validate data integrity and handle edge cases
 
 ### **Stage 9: Content & Documentation Updates**
+
 #### **9.1 README Content Development**
 - Replace APM template content with project-specific documentation
-- Create project overview, setup instructions, and usage guidelines
-- Document development process and maintenance procedures
+- Create comprehensive setup guide
+- Document GitHub Actions workflows
+- Add troubleshooting section
 
 #### **9.2 SEO & Meta Content**
-- Implement proper HTML meta tags and social media optimization
-- Add structured data markup and search engine optimization
-- Configure site icons and professional presentation elements
+- Implement Open Graph meta tags
+- Add Twitter Card meta tags
+- Create sitemap.xml
+- Configure robots.txt
 
 ### **Stage 10: Deployment Setup & Production**
+
 #### **10.1 GitHub Pages Configuration**
-- Configure Vite build settings for GitHub Pages deployment
-- Create GitHub Actions workflow for automated deployment
-- Guide User through repository settings and Pages activation
+- Configure Vite for GitHub Pages base path
+- Set up custom domain (if applicable)
+- Enable GitHub Pages in repository settings
+- Configure deployment branch
 
 #### **10.2 Production Deployment & Testing**
-- Execute production deployment with live website verification
-- Test cross-browser compatibility and responsive floating card behavior
-- Validate all void-like aesthetic functionality in production environment
+- Execute first production deployment
+- Test all interactive features in production
+- Validate responsive design on real devices
+- Monitor GitHub Actions deployment logs
 
 ### **Stage 11: Final Testing & Project Completion**
+
 #### **11.1 Comprehensive Quality Assurance**
-- Execute end-to-end testing of all functionality including Apple Watch-style interactions
-- Validate GitHub Actions, data updates, and deployment processes
-- Test error handling, edge cases, and glassmorphism effects
+- Test all animations and transitions
+- Validate accessibility with screen readers
+- Check cross-browser compatibility
+- Performance audit with Lighthouse
 
 #### **11.2 Project Handover & Documentation**
-- Complete project documentation and user training
-- Provide maintenance guidelines and troubleshooting resources
-- Confirm final project approval and successful completion
+- Create maintenance guide
+- Document component structure
+- Provide update procedures for content
+- Final sign-off and approval
 
 This Implementation PRD serves as the comprehensive technical foundation for systematic development coordination, ensuring both the web application functionality and the development methodology demonstration meet professional standards while showcasing the practical benefits of coordinated, specialized project development workflows with the void-like aesthetic and modern interaction patterns defined in the Design PRD.
