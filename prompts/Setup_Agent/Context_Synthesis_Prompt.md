@@ -209,8 +209,8 @@ Present comprehensive summary covering:
 
 #### Asset Format Selection
 In same response, right after summary presentation, ask the user to choose an APM asset format:
-- **Markdown**: Readable, concise, good for most projects (code, documents, analysis, feature-development)
-- **JSON**: Structured, ~15% more tokens, use for complex projects with strict validation needs
+- **Markdown**: DEFAULT - Readable, concise, good for most projects (code, documents, analysis, feature-development) 
+- **JSON**: Structured, ~15% more tokens, use for complex projects with strict validation needs (Still being tested)
 
 **Explain both options briefly and propose one based on gathered context. Let the User make the decision.**
 

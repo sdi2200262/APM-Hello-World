@@ -1,241 +1,289 @@
 # APM v0.4 - Project Breakdown Review Guide
-This guide defines how Setup Agents review the initial Implementation Plan to detect and fix critical task quality issues before enhancement. This guide uses phase-by-phase review cycles with enforced testing methodology and systematic fixing protocols.
+This guide defines how Setup Agents conduct targeted, user-selected review of Implementation Plans to detect and fix critical task quality issues before enhancement. Using fresh context from Implementation Plan creation, agents propose specific areas for systematic review and let users choose which sections receive detailed analysis.
 
 ---
 
 ## 1. Review Protocol Overview
 
 ### Review Purpose
-Conduct systematic review of simple Implementation Plan to identify and fix critical task quality issues:
+Conduct systematic review on user-selected portions of the Implementation Plan to identify and fix critical task quality issues:
 - Task packing violations (multiple distinct activities in one task)
 - Classification errors (wrong single-step vs multi-step designation)
 - Template matching patterns (rigid formatting across tasks)
 - User requirement compliance failures (Context Synthesis requirements missing)
 - Task execution scope errors (external platform assumptions)
 
-### Review Methodology
-**Phase-by-Phase Review:** Complete review of one phase before proceeding to next using testing that requires explicit enumeration and evidence-based decisions.
+### Context-Driven Review Methodology
+**Agent Proposal → User Selection → Targeted Systematic Review → Comprehensive Fixing**
 
 **Review Workflow:**
-1. **Test Application**: Apply all 5 tests to each task with explicit enumeration
-2. **Critical Fix**: Immediately fix clear violations with reasoning stated in chat
-3. **User Collaboration Cataloging**: Document issues requiring user input for later presentation
-4. **Phase Completion**: Complete all tests for all tasks and apply any needed modifications in each phase before proceeding to next phase
-5. **Holistic Review**: Cross-phase validation after all phases reviewed
-6. **User Collaboration Session**: Present all cataloged user collaboration items
-7. **Final Plan Update**: Apply all user-requested modifications and complete review
+1. **Intelligent Proposal**: Agent analyzes fresh Implementation Plan context to recommend review areas
+2. **User Selection**: User chooses which tasks/phases receive systematic review
+3. **Systematic Analysis**: Apply full testing methodology only to selected areas
+4. **Comprehensive Fixing**: Fix all issues in selected areas and apply patterns to unreviewed areas
+5. **Final User Review**: Present complete updated plan for approval
 
-**Progression Gates:** Cannot proceed to next phase without completing all tasks in current phase and applying all needed modifications.
-
-**Error Classification:**
-- **Critical Fix**: Clear violations, obvious errors, missing requirements - agent fixes immediately with reasoning stated in chat
-- **User Collaboration**: Borderline cases, genuine ambiguity, optimization opportunities, personal preference areas
+**Efficiency**: Full systematic review power applied only where most valuable
 
 ---
 
-## 2. Enforced Review Tests
+## 2. Intelligent Review Area Proposal
 
-### 2.1. Task Scope Optimization Test
-**Enumeration Requirement**: For each task, explicitly assess scope appropriateness in chat
-- **List Activities/Components**: What specific activities and components does this task accomplish? List each distinct element in chat.
-- **Evaluate Packing**: Would each listed activity deliver independent value if completed separately, excluding sequential workflow dependencies within the same domain? State thinking in chat.
-- **Evaluate Granularity**: Could this task's scope be reasonably combined with adjacent/related tasks without losing focus or creating domain conflicts? State reasoning in chat.
-- **Assess Step Efficiency**: For multi-step tasks, could 2+ consecutive steps be naturally combined without losing logical flow or user validation benefits? State analysis in chat.
-- **Decision**: 
-  - **If multiple independent activities exist** → task is packed → identify split points and create separate tasks
-  - **If task is over-granular** → combine related tasks or consolidate steps for more efficient execution
-  - **If appropriately scoped** → no changes needed
+### 2.1. Context Analysis for Proposal Generation
+**Leverage fresh Implementation Plan creation context to identify high-value review targets:**
 
-**Scope Issues to Identify:**
-- **Task Packing**: Multiple independent activities that should be separate tasks
-- **Over-Granular Tasks**: Small tasks that could be efficiently combined with related work
-- **Over-Granular Steps**: Multi-step consecutive steps that don't benefit from user confirmation breaks
-- **Artificial Separation**: Tasks separated without clear logical or practical justification
+**Immediate Context Awareness:**
+- **Complex Multi-Step Tasks**: Tasks with 6+ steps that might need splitting
+- **Technology Span**: Tasks covering multiple domains or skill areas
+- **Critical Path Items**: Tasks with multiple dependencies or cross-agent handoffs
+- **User Requirement Areas**: Sections containing emphasized Context Synthesis elements
+- **External Integration Points**: Tasks involving deployment, configuration, or platform coordination
 
-### 2.2. Classification Test
-**Enumeration Requirement**: For each task, explicitly list workflow steps in chat
-- **List Steps**: What are the sequential steps required to complete this task? List each step in chat.
-- **Evaluate Validation Needs**: For each listed step, does it benefit from user confirmation, validation, or guidance before proceeding to the next step? State thinking in chat.
-- **Assess Workflow Efficiency**: Would validation points genuinely improve task success, or would single-step completion with iteration be more efficient?
-- **Decision**: If intermediate validation points are **necessary** for task success (not just beneficial) AND provide clear value over workflow interruption → multi-step classification. If completable efficiently without validation points → single-step classification
+### 2.2. Proposal Categories
+**Recommend review areas based on detected patterns:**
 
-### 2.3. Template Matching Test
-**Enumeration Requirement**: For each task, explicitly list format comparisons in chat
-- **List Format Comparison**: How many bullets/steps does this task have? List other tasks in the plan with identical formatting in chat.
-- **Evaluate Complexity Match**: Does this task's actual complexity and instruction requirements match the listed tasks with similar formatting? State thinking in chat.
-- **Assess Natural Alignment**: Could similar complexity naturally result in similar formatting, or does this represent problematic pattern matching?
-- **Decision**: If formatting matches but complexity genuinely differs AND this represents pattern-driven decisions rather than natural complexity alignment → template matching violation → adjust format to reflect actual task complexity
+**High-Complexity Areas:**
+- Phases with multiple 6+ step tasks
+- Tasks spanning different technology domains
+- Sections with dense cross-agent dependencies
 
-### 2.4. User Requirements Test
-**Enumeration Requirement**: For each task, explicitly list applicable requirements in chat
-- **List Applicable Requirements**: Which specific user requirements from Context Synthesis apply to this task's domain? List each requirement in chat.
-- **Check Task Integration**: For each listed requirement, where in the task specification does it appear as an explicit actionable item? State thinking in chat.
-- **Decision**: If emphasized user requirements are absent from task specifications → add requirements as explicit task actions
+**Critical Path Areas:**
+- Tasks that block multiple other tasks
+- Cross-agent handoff points
+- External platform integration tasks
 
-### 2.5. Execution Scope Test
-**Enumeration Requirement**: For each task, explicitly list external dependencies in chat
-- **List External Dependencies**: Which actions in this task require access to external platforms, dashboards, or systems outside the IDE? List each external dependency in chat.
-- **Categorize Capabilities**: For each listed action, can Implementation Agents execute it using available IDE tools, or does it require user coordination? State thinking in chat.
-- **Decision**: If external platform actions are present → specify user coordination steps and separate from agent-executable work
+**User Requirement Areas:**
+- Sections implementing emphasized Context Synthesis requirements
+- Tasks involving user-specific preferences or constraints
 
----
+**Pattern Concern Areas:**
+- Groups of tasks with identical formatting
+- Sections that might have template matching issues
 
-## 3. Phase Review Cycle Execution
+### 2.3. Proposal Presentation Format
+**Present clear, actionable recommendations to user:**
 
-### 3.1. Phase Review Process
-**For each phase in the Implementation Plan, conduct systematic review:**
+**Format Structure:**
+```markdown
+## Systematic Review Recommendations
 
-#### Phase Analysis Setup
-**Before reviewing phase tasks:**
-- State phase being reviewed: "Reviewing Phase X: [Phase Name]"
-- Note total tasks in phase for tracking
-- Initialize critical fixes counter and user collaboration items list
+Based on the Implementation Plan I just created, I recommend systematic review for:
 
-#### Task-by-Task Testing
-**For each task in current phase, apply ALL 5 tests systematically:**
+**High-Complexity Areas:**
+- **[Phase/Task ID]** ([complexity indicators: multi-step count, domain span, etc.])
+- **[Phase/Task ID]** ([specific complexity reasoning])
 
-**Task [X.Y]: [Task Name] - Review**
+**Critical Path Areas:**
+- **[Phase/Task ID]** ([dependency description and impact])
+- **[Phase/Task ID]** ([external coordination requirements])
 
-1. **Task Scope Optimization Test Application**:
-   - List Activities/Components: [enumerate all distinct activities and components]
-   - Packing Analysis: [evaluate each activity for independence]
-   - Granularity Analysis: [evaluate if task could be combined with others]
-   - Step Efficiency Analysis: [assess multi-step consolidation opportunities]
-   - Decision: [appropriately scoped/packed/over-granular + reasoning]
+**User Requirement Integration:**
+- **[Phase/Task ID]** ([specific Context Synthesis requirements implemented])
 
-2. **Classification Test Application**:
-   - List Steps: [enumerate all workflow steps]
-   - Validation Analysis: [evaluate each step's validation needs]
-   - Workflow Efficiency Assessment: [evaluate necessity vs interruption cost]
-   - Decision: [single-step/multi-step + reasoning including efficiency considerations]
+**Pattern Concerns:**
+- **[Task Range]** ([template matching or formatting issues identified])
 
-3. **Template Matching Test Application**:
-   - List Format Comparison: [enumerate similar tasks and their formatting]
-   - Complexity Analysis: [evaluate complexity match]
-   - Natural Alignment Assessment: [evaluate if similarity is coincidental vs problematic]
-   - Decision: [natural formatting/template matching + reasoning]
+**Recommendation:** Focus systematic review on [highest-value selections] for maximum impact.
 
-4. **User Requirements Test Application**:
-   - List Applicable Requirements: [enumerate relevant Context Synthesis requirements]
-   - Integration Check: [locate requirements in task specification]
-   - Decision: [requirements integrated/missing + reasoning]
+**Your Choice:** Select any combination of the above recommendations, or specify other tasks/phases you'd like reviewed. I'll apply full systematic analysis only to your selected areas.
+```
 
-5. **Execution Scope Test Application**:
-   - List External Dependencies: [enumerate external platform actions]
-   - Capability Analysis: [categorize agent vs user actions]
-   - Decision: [proper scope/needs coordination + reasoning]
-
-**Catalog any critical fixes or user collaboration items identified for current task.**
-**Task Review Conclusion**: State "Task [X.Y] review complete - [critical fixes identified/no issues found]"
-
-### 3.2. Critical Fix Execution
-**For clear violations identified through testing, catalog for systematic application:**
-
-#### Critical Fix Categories
-- **Task Scope Violations**: Split packed tasks with multiple independent activities OR combine over-granular tasks/steps into more efficient execution units
-- **Obvious Classification Errors**: Tasks where user validation needs clearly don't match current format
-- **Genuine Template Matching Violations**: Pattern-driven formatting that doesn't reflect actual task complexity
-- **Missing User Requirements**: Emphasized requirements absent from task specifications
-- **Execution Scope Errors**: External platform actions not properly separated from agent-executable work
-
-#### Critical Fix Documentation
-**For each critical fix identified:**
-- **Issue Identified**: [Specific problem found through testing]
-- **Evidence**: [Enumerated list that revealed the problem]
-- **Fix Required**: [Specific changes needed for task]
-- **Reasoning**: [Why this fix would improve task execution]
-
-**State in chat**: "Critical fix identified for Task [X.Y]: [fix description and reasoning]"
-
-### 3.3. User Collaboration Cataloging
-**Document borderline issues requiring user input for later presentation:**
-
-#### User Collaboration Categories
-- **Borderline Packing**: Tasks that could reasonably be split but have integration value
-- **Classification Ambiguity**: Tasks that could work as either single-step or multi-step
-- **Formatting Preferences**: Template matching cases where user preference matters
-- **Granularity Options**: Tasks that could be more/less granular based on user workflow preference
-- **Agent Workload Balance**: Uneven task distribution that could be redistributed
-
-**State in chat**: "User collaboration item cataloged: Task [X.Y] - [issue description]"
-
-### 3.4. Phase Review Completion
-**After completing all tasks in current phase:**
-
-#### Phase Summary
-- **Tasks Reviewed**: [total number]
-- **Critical Fixes Identified**: [count and brief description]
-- **User Collaboration Items**: [count for later presentation]
-- **Phase Integrity Check**: Verify phase maintains logical structure after proposed fixes
-
-#### Phase-End Critical Fix Application
-**Apply all cataloged critical fixes systematically:**
-- Review all identified critical fixes for consistency
-- Apply fixes to Implementation Plan with proper documentation
-- Update task numbering and dependencies as needed
-- Verify no conflicts between fixes
-
-**State completion**: "Phase [X] review complete - [X] critical fixes applied, [Y] user collaboration items cataloged"
-
-**Progression Gate**: Cannot proceed to next phase without completing all tasks and applying critical fixes.
+**Proposal Guidelines:**
+- Limit recommendations to 4-6 items maximum for clear decision-making
+- Provide specific reasoning for each recommendation
+- Highlight 1-2 top priorities for user guidance
+- Always offer user flexibility to modify selections
 
 ---
 
-## 4. Holistic Review and Final Validation
+## 3. User Selection Process
 
-### 4.1. Cross-Phase Validation
-**After completing all individual phase reviews:**
+### 3.1. Selection Options
+**Flexible selection allowing user control:**
 
-#### Cross-Phase Dependency Check
-- **Dependency Integrity**: Verify critical fixes don't break dependencies between phases
-- **Reference Updates**: Ensure task references updated after splitting or modification
-- **Workflow Continuity**: Confirm logical progression maintained across phases
+**Selection Formats User Can Choose:**
+- **Full Phase Selection**: "Review [Phase X]" (all tasks in specified phase)
+- **Multiple Phases**: "Review [Phases X and Y]" (multiple complete phases)
+- **Individual Tasks**: "Review [Task X.Y] and [Task Z.A]" (specific task selections)
+- **Task Ranges**: "Review [Tasks X.Y-X.Z]" (sequential task groups)
+- **Mixed Combinations**: "Review [Phase X] and [Task Y.Z]" (phases plus individual tasks)
+- **Exclusion Approach**: "Review everything except [Phase/Task identifiers]" (comprehensive minus exclusions)
 
-#### Plan-Wide Pattern Analysis
-- **Template Matching Scan**: Review entire plan for remaining rigid formatting patterns
-- **Agent Workload Assessment**: Evaluate final task distribution after all critical fixes
-- **User Requirement Coverage**: Verify all emphasized Context Synthesis requirements integrated somewhere in plan
+**Additional Selection Capabilities:**
+- User can add tasks not included in agent recommendations
+- User can request focus on specific aspects (classification, packing, requirements integration)
+- User can modify agent recommendations by adding or removing items
 
-**State completion**: "Holistic review complete - plan integrity verified"
+### 3.2. Selection Confirmation
+**Clear confirmation of review scope before proceeding:**
 
-### 4.2. User Collaboration Session
-**Present ALL cataloged user collaboration items from entire plan:**
+**Confirmation Format:**
+```markdown
+**Selected for Systematic Review:**
+- [Phase/Task selections with task counts]
+- [Individual task selections]
+- [Any special focus areas requested]
 
-#### Comprehensive User Collaboration Presentation
-**Present items systematically with clear options:**
-- **Borderline Packing Issues**: "Task X.Y could be split into [A] and [B] or remain combined. Split provides [benefits] but combination offers [integration value]. Preference?"
-- **Classification Ambiguity**: "Task X.Y could be single-step (complete in one exchange) or multi-step (user validation between steps). Based on your workflow preference, which approach?"
-- **Agent Workload Options**: "Current distribution: Agent_A ([X] tasks), Agent_B ([Y] tasks). Redistribute for balance or maintain specialization?"
-- **Granularity Preferences**: "Task X.Y could be [more granular approach] or [current approach]. Which fits your project management style?"
+**Total:** [X] tasks receiving full systematic analysis
+**Proceeding with systematic review of selected areas...**
+```
 
-#### Iterative User Collaboration
-**Work with user until explicit confirmation:**
-1. **Present All Options**: Provide clear alternatives with pros/cons for each cataloged issue
-2. **User Decision Collection**: Allow user to address items they have preferences on
-3. **Iterative Refinement**: Address follow-up questions and additional user requests
-4. **Completeness Check**: Ensure all significant user collaboration items addressed
-5. **Explicit Confirmation**: Obtain clear user confirmation to proceed to enhancement phase
+**Confirmation Requirements:**
+- List all selected phases and individual tasks
+- Provide total task count for scope clarity
+- Confirm any special focus areas or constraints
+- Obtain explicit user approval before proceeding
 
-### 4.3. Final Implementation Plan Update
-**Apply all decisions and complete review process:**
+---
 
-#### Decision Implementation
-1. **Critical Fix Integration**: Ensure all critical fixes properly applied to Implementation Plan
-2. **User Decision Application**: Apply all user choices systematically to plan
-3. **Consistency Validation**: Verify all changes work harmoniously together
-4. **File Modification**: Update Implementation Plan file with complete review results
-5. **Final Integrity Check**: Confirm plan ready for Enhancement phase
+## 4. Systematic Analysis (Selected Areas Only)
 
-#### Review Completion Summary
-**Document comprehensive review outcomes:**
-- **Total Tasks Reviewed**: [number across all phases]
-- **Critical Fixes Applied**: [count and categories of fixes]
-- **User Collaboration Items Resolved**: [count and types addressed]
-- **Template Matching Corrections**: [formatting improvements made]
-- **User Requirement Integration**: [requirements added to task specifications]
-- **Execution Scope Corrections**: [coordination requirements clarified]
+### 4.1. Full Testing Methodology
+**Apply comprehensive testing to selected tasks only:**
 
-**Review Completion Confirmation**: "Implementation Plan review complete. All critical issues fixed, user collaboration items addressed. Plan ready for Enhancement phase."
+For each selected task, conduct systematic analysis:
+
+**Task [X.Y]: [Task Name] - Systematic Review**
+
+1. **Task Scope Optimization Test**:
+   - List distinct activities and evaluate independence
+   - Assess granularity and combination opportunities
+   - Evaluate step efficiency for multi-step tasks
+
+2. **Classification Test**:
+   - List workflow steps and validation needs
+   - Assess workflow efficiency vs interruption costs
+
+3. **Template Matching Test**:
+   - Compare formatting to other tasks
+   - Evaluate complexity-formatting alignment
+
+4. **User Requirements Test**:
+   - Identify applicable Context Synthesis requirements
+   - Check integration into task specifications
+
+5. **Execution Scope Test**:
+   - Identify external dependencies and coordination needs
+   - Categorize agent vs user capabilities
+
+**Decision:** [Issue found/No issues] + brief reasoning
+**Fix Applied:** [Specific changes made if issues found]
+
+### 4.2. Issue Documentation
+**Track all issues found in selected areas:**
+
+**Documentation Format:**
+```markdown
+**Issues Found in Selected Areas:**
+- [Task ID]: [Issue type] ([resolution applied])
+- [Task ID]: [Issue type] ([resolution applied])
+- [Task Range]: [Pattern issue] ([pattern fix applied])
+```
+
+**Documentation Requirements:**
+- List each task with issues found during systematic review
+- Specify issue type (packing violation, classification error, missing requirements, etc.)
+- Document specific resolution applied
+- Group similar issues for clarity
+
+---
+
+## 5. Comprehensive Fixing & Pattern Application
+
+### 5.1. Selected Area Fixes
+**Apply all identified fixes to selected tasks:**
+
+- Fix packing violations through task splitting
+- Correct classification errors
+- Add missing user requirements
+- Resolve template matching issues
+- Clarify execution scope boundaries
+
+### 5.2. Pattern Application to Unreviewed Areas
+**Apply learned patterns to improve entire plan:**
+
+**If Pattern Found in Selected Areas:**
+- **Packing patterns**: Scan unreviewed areas for similar packing indicators
+- **Classification patterns**: Check unreviewed tasks with similar characteristics
+- **Template matching**: Vary formatting across unreviewed similar tasks
+- **Missing requirements**: Add requirements to unreviewed tasks in similar domains
+
+**Conservative Application:**
+- Apply only clear, obvious patterns to unreviewed areas
+- Avoid extensive changes to unreviewed sections
+- Focus on applying lessons learned from systematic review
+
+### 5.3. Comprehensive Plan Update
+**Update entire Implementation Plan with all changes:**
+
+1. **Apply systematic review fixes** to selected areas
+2. **Apply pattern-based improvements** to unreviewed areas
+3. **Maintain consistency** across entire plan
+4. **Update task numbering** and dependencies as needed
+
+---
+
+## 6. Final User Review
+
+### 6.1. Review Summary Presentation
+**Clear summary of all changes made:**
+
+**Summary Format:**
+```markdown
+## Review Complete - Summary of Changes
+
+**Systematic Review Applied To:**
+- [Phase/Task selections] - Found and fixed: [issue summary with counts]
+- [Individual tasks] - Found and fixed: [specific issues]
+- [Any areas with no issues found]
+
+**Pattern-Based Improvements Applied:**
+- [Description of patterns found and applied to unreviewed areas]
+- [Count and type of improvements made based on systematic review findings]
+
+**Total Changes:**
+- [X] tasks split ([original] → [new task breakdown])
+- [X] tasks reclassified ([classification changes made])
+- [X] tasks enhanced with [type of enhancements]
+- [X] tasks reformatted for [formatting improvements]
+
+**Ready for Enhancement Phase**
+```
+
+**Summary Requirements:**
+- Clearly distinguish between systematic review fixes and pattern-based improvements
+- Provide specific counts and types of changes made
+- List any task splits with before/after identification
+- Confirm readiness for next phase
+
+### 6.2. Final Approval Process
+**User review and approval:**
+
+1. **Present updated Implementation Plan** with all changes
+2. **Highlight major modifications** for user attention
+3. **Request explicit approval** to proceed to Enhancement phase
+4. **Address any user concerns** or additional changes
+5. **Confirm completion** when user approves
+
+---
+
+## 7. Integration with Enhancement Phase
+
+### 7.1. Quality Handoff
+**Ensure smooth transition to Enhancement:**
+
+- **Systematic Review Documentation**: Note which areas received full review
+- **Issue Resolution Confirmation**: Verify all identified issues are resolved
+- **Pattern Application Documentation**: Record improvements applied to unreviewed areas
+- **User Approval Confirmation**: Explicit approval for Enhancement phase
+
+### 7.2. Enhancement Phase Notes
+**Provide context for Setup Agent Enhancement:**
+
+- Areas that received systematic review and are high-confidence
+- Areas that received pattern-based improvements only
+- Specific user requirements and preferences validated during review
+- Any remaining user collaboration items for Enhancement phase
 
 ---
 

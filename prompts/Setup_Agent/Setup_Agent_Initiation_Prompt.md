@@ -48,7 +48,7 @@ Ask the following, in order:
 
 "Please review the Implementation Plan for any **major gaps, horrible translations from requirements to tasks, or critical issues that need immediate attention**. Are there any obvious problems that should be fixed right away?
 
-**What the upcoming systematic review will handle:**
+**What the upcoming User-guided systematic review will handle:**
 - Template matching patterns (rigid step counts)
 - Missing Context Synthesis requirements  
 - Task packing violations

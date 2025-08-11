@@ -10,6 +10,21 @@ Manager Agent issues Task Assignment Prompt → User passes to Implementation Ag
 ## 2. Task Assignment Prompt Format
 Task Assignment Prompts must correlate 1-1 with Implementation Plan tasks and include all necessary context for successful execution. Manager Agent must issue these prompts following this format:
 
+## 2.1 Dependency Check
+Before creating any Task Assignment Prompt check for task dependencies.
+
+**Step 1: Identify Dependencies**
+Check Implementation Plan task's `Guidance` field for dependency declarations:
+- `"Depends on: Task X.Y Output"` = Same-agent dependency
+- `"Depends on: Task X.Y Output by Agent Z"` = **CROSS-AGENT DEPENDENCY**
+
+**Step 2: Determine Context Integration Approach**
+- **Same Agent** (no "by Agent X" tag) → Use **Simple Contextual Reference** (Section 4.1)
+- **Cross Agent** (has "by Agent X" tag) → Use **MANDATORY Comprehensive Integration Context** (Section 4.2)
+
+### **Cross-Agent Dependency Warning**
+**CRITICAL**: Cross-agent dependencies require Implementation Agents to complete detailed file reading and integration steps BEFORE starting main task work.
+
 ### 2.1. Prompt Structure with YAML Frontmatter
 Include optional sections only when their front-matter boolean is true
 

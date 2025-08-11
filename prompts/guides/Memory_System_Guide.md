@@ -19,7 +19,7 @@ Summary of the three Memory System variants, their storage layouts, log formats 
     - Log format: One `Task_XX_<slug>.md` Memory Log per task
     - After each phase completes, an inline subsection is appended to the `Memory_Root.md` file summarizing the phase.
 
-- Dynamic‑JSON
+- Dynamic‑JSON (Still being tested)
     - Storage layout: Same as Dynamic‑MD (markdown root) in the `apm/` directory,
     - Log format: One `Task_XX_<slug>.json` Memory Log per task
     - After each phase completes, an inline subsection is appended to the `Memory_Root.md` file summarizing the phase.

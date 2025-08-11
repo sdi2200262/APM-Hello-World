@@ -17,7 +17,7 @@ Summary of the three Memory System variants, their storage layouts and log forma
   - Storage: `Memory/` folder with subfolders `Phase_XX_<slug>/`
   - Format: One `Task_XX_<slug>.md` file per task (Markdown)
 
-- Dynamic-JSON
+- Dynamic-JSON (Still being tested)
   - Storage: Same as Dynamic-MD
   - Format: One `Task_XX_<slug>.json` file per task (JSON, schema at `prompts/schemas/memory_log.schema.json`)
 
