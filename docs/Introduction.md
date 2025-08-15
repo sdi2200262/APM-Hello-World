@@ -28,6 +28,8 @@ The result is a workflow that feels more like working with a well organized team
 
 > Think of APM like running a software development team. You have a project manager who understands the big picture, developers who focus on specific tasks, and clear documentation that keeps everyone aligned. Developers document each task execution, and the manager reviews the logs for coordination. The difference is that your "team members" are AI assistants in separate chat sessions.
 
+---
+
 ## Multi-Agent Coordination
 
 APM v0.4 employs a sophisticated multi-agent system built around four specialized agent types:
@@ -58,6 +60,8 @@ APM v0.4 operates through two workflow phases & Handover Procedures:
 1. **Setup Phase**: Comprehensive project discovery and planning through the Setup Agent & initialization of session assets
 2. **Task Loop Phase**: Coordinated task assignment & execution via Manager and Implementation Agents
 3. **Handover Procedure**: Seamless context transfer when agents approach memory limits
+
+---
 
 ## Core Framework (`/prompts`)
 - `/prompts/Setup_Agent/`: Initialization Prompt & Context Synthesis Prompt for the Setup Agent
